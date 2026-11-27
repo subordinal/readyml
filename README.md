@@ -31,9 +31,24 @@ Exit code is 1 when the verdict is NOT READY, so it can gate CI. `--json` prints
 | Quantization works on that GPU family | the quantization table in the vLLM v0.34.0 docs (vLLM only) |
 | Weights fit in GPU memory | file sizes from the Hugging Face Hub |
 | Context length fits | a KV cache estimate from config.json; `--max-model-len` sets the length |
+| Known startup failures that match this model, release and GPU | 68 records from vLLM, SGLang and KServe issues, in `src/readyml/data/known_issues.json` |
 | Repo is complete and the revision is pinned | the Hugging Face Hub |
 
 Runtimes: `vllm:<version>` and `sglang:<version>`. GPUs: `t4 l4 a10g a100-40 a100-80 l40s h100 h200 b200`. Use `--gpus N` for more than one.
+
+### Known issues
+
+Most startup failures are not configuration mistakes. They are engine bugs that repeat exactly for a given model, release, GPU and set of flags. `check` matches your launch against failures already reported upstream:
+
+```
+$ readyml check --model Qwen/Qwen3.8-Flash-Next-FP8 --runtime vllm:0.34.0 --gpu a100-80 --gpus 4
+  ...
+  WARN  known issue   The Triton fused-MoE kernel is selected without a compute-capability check and uses
+                      the fp8e4nv dtype, which SM80 does not support. ... Workaround: Pass --moe-backend marlin
+                      https://github.com/vllm-project/vllm/issues/54318
+```
+
+Each record names the issue it came from. A record matches only when it names your model or its architecture. Records were extracted from issue text and 16 of the 68 are marked medium confidence; only two have a confirmed fixed-in release. Corrections and new records are welcome as pull requests to the JSON file.
 
 ## versions: which release do I need?
 
@@ -64,7 +79,7 @@ It reads the timestamps and the durations vLLM logs itself, and adds a hint when
 
 ## Limits
 
-- It reads configuration and logs. It cannot see engine bugs it has not been told about.
+- It reads configuration and logs. It cannot see engine bugs that are not in its known-issues file.
 - The quantization table comes from one vLLM release and has no Blackwell column. SGLang quantization is not checked.
 - The KV cache figure is an estimate from the standard attention formula. It is not calibrated against measured runs, and it is skipped for models whose config does not describe a standard attention stack.
 - `trace` reads vLLM logs only, and has been run against one real log so far. Phases vLLM does not log separately (distributed init, download with streaming loaders) are not split out.

@@ -68,10 +68,8 @@ def match(records, info, rt, gpu):
         by_model = model_id in {m.lower() for m in r.get("models") or []}
         by_arch = bool(archs & set(r.get("architectures") or []))
         by_quant = bool(quant & set(r.get("quantization") or []))
-        if r.get("models") or r.get("architectures"):
-            if not (by_model or by_arch):
-                continue
-        elif not by_quant:
+        # A record that names no model and no architecture would match too widely, so it never matches here.
+        if not (by_model or by_arch):
             continue
         if r.get("quantization") and not by_quant:
             continue

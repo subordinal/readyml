@@ -1,0 +1,1762 @@
+[
+ {
+  "id": "kserve-6065",
+  "runtime": "kserve",
+  "url": "https://github.com/kserve/kserve/issues/6065",
+  "state": "closed",
+  "title": "huggingfaceserver: vLLM backend broken with vLLM >= 0.25.0 (renderer API removed)",
+  "architectures": [],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "vLLM >= 0.25.0 (KServe master 13035def, v0.20.0)",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ModuleNotFoundError: No module named 'vllm.entrypoints.serve.render'",
+  "cause": "huggingfaceserver uses a vLLM renderer API that vLLM removed in 0.25.0.",
+  "workaround": "Keep the pinned vllm==0.24.0.",
+  "fix_ref": "https://github.com/kserve/kserve/pull/6066",
+  "confidence": "medium"
+ },
+ {
+  "id": "sglang-19587",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/19587",
+  "state": "closed",
+  "title": "[Bug] txn545/Qwen3.5-27B-NVFP4 fails to load on latest main: missing input_scale param + shape assertion in qwen3_5.py",
+  "architectures": [],
+  "models": [
+   "txn545/Qwen3.5-27B-NVFP4"
+  ],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.5.9",
+   "fixed_in": "0.5.17"
+  },
+  "flags": [
+   "--quantization=modelopt_fp4"
+  ],
+  "symptom": "Parameter model.layers.0.linear_attn.in_proj_a.input_scale not found in params_dict",
+  "cause": "With modelopt_fp4 the code forces quant_config=None for the linear_attn and self_attn modules, so bf16 parameters do not match the FP4 checkpoint weights.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/31220",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-19644",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/19644",
+  "state": "closed",
+  "title": "Qwen3.5-35B-A3B-AWQ fails to load with KeyError: experts.w2_weight",
+  "architectures": [
+   "Qwen3_5MoeForConditionalGeneration"
+  ],
+  "models": [],
+  "quantization": [
+   "awq"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "lmsysorg/sglang:Qwen3.5-35B-A3B image",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "KeyError: 'model.layers.0.mlp.experts.w2_weight'",
+  "cause": "The Qwen3.5 MoE loader did not handle AWQ expert weights.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/20128",
+  "confidence": "medium"
+ },
+ {
+  "id": "sglang-24302",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/24302",
+  "state": "closed",
+  "title": "[Bug] GemmaRMSNorm failed with error code no kernel image is available for execution on the device (RTX2080/sm75)",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3.5-4B"
+  ],
+  "quantization": [],
+  "gpu_families": [
+   "turing"
+  ],
+  "versions": {
+   "affected": "0.5.9",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "RuntimeError: GemmaRMSNorm failed with error code no kernel image is available for execution on the device",
+  "cause": "The gemma_rmsnorm kernel in sgl-kernel is compiled only for sm80 and newer.",
+  "workaround": null,
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-24607",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/24607",
+  "state": "closed",
+  "title": "[Bug] MiMo-V2.5-Pro fails to load with TP=16 on 2 nodes with 8 Nvidia H200 card in each: fused qkv_proj shard shape mismatch when tp_size > num_key_value_heads",
+  "architectures": [],
+  "models": [
+   "XiaomiMiMo/MiMo-V2.5-Pro"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "lmsysorg/sglang:dev-mimo-v2.5-pro (0.0.0.dev1+gfb2e0b2ae)",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tp=16"
+  ],
+  "symptom": "AssertionError: Attempted to load weight (torch.Size([1696, 6144])) into parameter (torch.Size([1856, 6144]))",
+  "cause": "The fused qkv_proj loader does not handle tp_size greater than num_key_value_heads, which is 8.",
+  "workaround": "Use TP8 and enable DP attention with dp size 2.",
+  "fix_ref": null,
+  "confidence": "medium"
+ },
+ {
+  "id": "sglang-26107",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/26107",
+  "state": "closed",
+  "title": "[Bug] Step-3.5-Flash FP8 block quantization fails with TP=4: share_expert output_partition_size not divisible by block_n",
+  "architectures": [],
+  "models": [],
+  "quantization": [
+   "fp8"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.5.12",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tp=4",
+   "--ep=4",
+   "--quantization=fp8"
+  ],
+  "symptom": "ValueError: Weight output_partition_size = 320 is not divisible by weight quantization block_n = 128.",
+  "cause": "At TP=4 the shared expert gate_up_proj has an output partition size of 320, which is not a multiple of the FP8 block size 128.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/26213",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-29149",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/29149",
+  "state": "closed",
+  "title": "[Bug] `--enable-deterministic-inference` crashes during startup on NVIDIA L40S with Triton shared-memory OutOfResources",
+  "architectures": [],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [
+   "ada"
+  ],
+  "versions": {
+   "affected": "0.5.13",
+   "fixed_in": null
+  },
+  "flags": [
+   "--enable-deterministic-inference"
+  ],
+  "symptom": "triton.runtime.errors.OutOfResources: out of resource: shared memory,",
+  "cause": "The batch-invariant matmul kernel requests 106496 bytes of shared memory and SM 8.9 provides 101376.",
+  "workaround": "Do not pass --enable-deterministic-inference on this GPU.",
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-30887",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/30887",
+  "state": "closed",
+  "title": "[Bug] ModelOpt NVFP4 gated MoE fails to load with TP when intermediate padding is required",
+  "architectures": [],
+  "models": [
+   "nvidia/Gemma-4-26B-A4B-NVFP4",
+   "stepfun-ai/Step-3.7-Flash-NVFP4"
+  ],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.5.15",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tp-size>1"
+  ],
+  "symptom": "AssertionError: The intermediate size required padding, but padding is also implemented for gated activations",
+  "cause": "TP=2 gives 352 channels per rank, which needs padding to 384, and the NVFP4 post-load path rejects padding for gated activations.",
+  "workaround": "Use TP=1.",
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-35080",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/35080",
+  "state": "closed",
+  "title": "[Bug] Flashinfer backend is not supported on Blackwell GPUs",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3.5-35B-A3B"
+  ],
+  "quantization": [],
+  "gpu_families": [
+   "blackwell"
+  ],
+  "versions": {
+   "affected": "0.5.17",
+   "fixed_in": null
+  },
+  "flags": [
+   "--attention-backend=flashinfer"
+  ],
+  "symptom": "AssertionError: Only {'trtllm_mha', 'triton', 'fa4'} backends are supported on Blackwell GPUs for hybrid GDN models. Got attention_backend=flashinfer.",
+  "cause": "A capability gate rejects the flashinfer attention backend for hybrid GDN models on Blackwell.",
+  "workaround": "Use attention_backend=triton or trtllm_mha.",
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/36340",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-36906",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/36906",
+  "state": "closed",
+  "title": "[Bug] GLM-5.3-Flash crashes at startup under pipeline parallelism — KeyError: 'residual'",
+  "architectures": [],
+  "models": [
+   "LibertAIDAI/GLM-5.3-Flash-NVFP4"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "lmsysorg/sglang:glm-5.3-flash (0.0.0.dev1+g033446bb05)",
+   "fixed_in": null
+  },
+  "flags": [
+   "--pp-size>1"
+  ],
+  "symptom": "KeyError: 'residual'",
+  "cause": "The warmup allocates no residual buffer for mHC models while the model expects residual as a separate pipeline proxy tensor.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/37375",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-37342",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/37342",
+  "state": "closed",
+  "title": "[Bug] DeepSeek-V4-Flash-0731 fails to load on v0.5.17/v0.5.18: AssertionError: Hidden size mismatch in the mxfp4 MoE path (works on main)",
+  "architectures": [],
+  "models": [
+   "deepseek-ai/DeepSeek-V4-Flash-0731"
+  ],
+  "quantization": [
+   "fp8",
+   "mxfp4"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "v0.5.17 / v0.5.18",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "AssertionError: Hidden size mismatch",
+  "cause": "The flashinfer_mxfp4 MoE path in the tagged releases fails on this checkpoint's mxfp4-packed routed experts, and main works.",
+  "workaround": "Run from main.",
+  "fix_ref": null,
+  "confidence": "medium"
+ },
+ {
+  "id": "sglang-38291",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/38291",
+  "state": "closed",
+  "title": "[Bug] `fp8e4nv` not supported on A100 (SM80) when serving Qwen3.8-Flash-Next-FP8",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3.8-Flash-Next-FP8"
+  ],
+  "quantization": [
+   "fp8"
+  ],
+  "gpu_families": [
+   "ampere"
+  ],
+  "versions": {
+   "affected": "lmsysorg/sglang:qwen38flashnext image",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "type fp8e4nv not supported in this architecture. The supported fp8 dtypes are ('fp8e4b15', 'fp8e5')",
+  "cause": "The FP8 path uses Triton's fp8e4nv dtype, which SM80 does not support.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/38859",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-43342",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/43342",
+  "state": "closed",
+  "title": "[Bug] RuntimeError: Failed at /sgl-workspace/sglang/python/sglang/kernels/jit/csrc/gemm/marlin/gptq_marlin_repack.cuh:311: size_n = 8608 is not divisible by tile_n_size = 64",
+  "architectures": [],
+  "models": [
+   "cyankiwi/gemma-4-31B-it-AWQ-4bit"
+  ],
+  "quantization": [
+   "awq"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.5.21",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "gptq_marlin_repack.cuh:311: size_n = 8608 is not divisible by tile_n_size = 64",
+  "cause": "A layer in this checkpoint has output size 8608, which the Marlin repack kernel cannot split into 64-wide tiles.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/48794",
+  "confidence": "medium"
+ },
+ {
+  "id": "sglang-46312",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/46312",
+  "state": "open",
+  "title": "[Bug] DeepSeek AWQ checkpoints fail to load on CUDA: ModuleNotFoundError: No module named 'sglang.kernel_api_logging'",
+  "architectures": [],
+  "models": [
+   "QuantTrio/DeepSeek-V3.1-AWQ",
+   "QuixiAI/DeepSeek-R1-AWQ",
+   "QuixiAI/DeepSeek-V3-0324-AWQ",
+   "TechxGenus/DeepSeek-V2-Lite-Chat-AWQ"
+  ],
+  "quantization": [
+   "awq"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "main @ bf1a252953",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ModuleNotFoundError: No module named 'sglang.kernel_api_logging'",
+  "cause": "The CUDA branch of awq_dequantize_func imports a module from its old location after it was moved.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/46322",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-48108",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/48108",
+  "state": "open",
+  "title": "[Bug] ModelOpt NVFP4 MoE crashes at warmup with AttributeError 'g1_scale_c' under the default --moe-runner-backend auto on Blackwell",
+  "architectures": [],
+  "models": [
+   "thinkingmachines/Inkling-Small-NVFP4"
+  ],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [
+   "blackwell"
+  ],
+  "versions": {
+   "affected": "0.5.22",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "AttributeError: 'FusedMoE' object has no attribute 'g1_scale_c'",
+  "cause": "Under the default auto backend the weights are prepared in the non-TRT-LLM layout while the runner resolves to FLASHINFER_TRTLLM on Blackwell.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/48107",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-49372",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/49372",
+  "state": "open",
+  "title": "[Bug] compressed-tensors: a shared expert kept unquantized in `ignore` is still fused into the quantized MoE (Qwen3-Next AWQ fails to load)",
+  "architectures": [],
+  "models": [
+   "cyankiwi/Qwen3-Next-80B-A3B-Instruct-AWQ-4bit"
+  ],
+  "quantization": [
+   "awq",
+   "compressed-tensors"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "v0.5.23 and main d959849",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "KeyError: 'model.layers.0.mlp.experts.w2_weight'",
+  "cause": "A shared expert kept unquantized in the compressed-tensors ignore list is still fused into the quantized MoE.",
+  "workaround": "Pass --disable-shared-experts-fusion, as noted in a comment on sglang issue 19644.",
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/49373",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-50386",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/50386",
+  "state": "open",
+  "title": "[Bug] [AMD] INT8 W8A8 models fail on ROCm: `NameError: int8_scaled_mm` for compressed-tensors, `w8a8_int8` rejected at startup",
+  "architectures": [],
+  "models": [
+   "RedHatAI/Qwen2.5-0.5B-Instruct-quantized.w8a8"
+  ],
+  "quantization": [
+   "int8",
+   "compressed-tensors"
+  ],
+  "gpu_families": [
+   "amd"
+  ],
+  "versions": {
+   "affected": "0.5.21",
+   "fixed_in": null
+  },
+  "flags": [
+   "--quantization=w8a8_int8"
+  ],
+  "symptom": "ValueError: w8a8_int8 quantization is currently not supported in ROCm.",
+  "cause": "The int8_scaled_mm kernel is imported only on CUDA and w8a8_int8 is missing from the ROCm supported-quantization list.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/52425",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-51651",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/51651",
+  "state": "open",
+  "title": "[Bug] Qwen3.5-9B fails to start with --enable-torch-compile: decode CUDA graph capture OOMs at bs=32 on a multi-GB allocation",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3.5-9B"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.5.23",
+   "fixed_in": null
+  },
+  "flags": [
+   "--enable-torch-compile"
+  ],
+  "symptom": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.95 GiB. GPU 0 has a total capacity of 79.25 GiB of which 6.75 GiB is free.",
+  "cause": "The compiled linear-attention forward appears to allocate a buffer sized by the mamba state cache rather than the batch.",
+  "workaround": "Start without --enable-torch-compile.",
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/51709",
+  "confidence": "medium"
+ },
+ {
+  "id": "sglang-52506",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/52506",
+  "state": "open",
+  "title": "DSPARK draft MoE crashes on SM120: HybridFp8NvFp4Config unconditionally uses TRT-LLM-gen (sm100-only cubins) for MTP layers",
+  "architectures": [],
+  "models": [
+   "nvidia/DeepSeek-V4-Pro-NVFP4"
+  ],
+  "quantization": [
+   "fp8",
+   "nvfp4",
+   "mxfp4"
+  ],
+  "gpu_families": [
+   "blackwell"
+  ],
+  "versions": {
+   "affected": "v0.5.22 / v0.5.23 / current main",
+   "fixed_in": null
+  },
+  "flags": [
+   "--speculative-algorithm=DSPARK"
+  ],
+  "symptom": "The trtllm-gen batched GEMM cubin manifest contains no kernels runnable on sm120; this backend currently ships cubins for sm100, sm103 and sm107.",
+  "cause": "For hybrid FP8+NVFP4 checkpoints the DSPARK draft MoE layers are always given the TRT-LLM-gen method, with no SM or backend check.",
+  "workaround": null,
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/52783",
+  "confidence": "high"
+ },
+ {
+  "id": "sglang-53309",
+  "runtime": "sglang",
+  "url": "https://github.com/sgl-project/sglang/issues/53309",
+  "state": "open",
+  "title": "[Bug] TP startup hangs when same-host Pods share /dev/shm",
+  "architectures": [],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.5.23",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tp-size=2",
+   "--nnodes=2"
+  ],
+  "symptom": "both TP ranks get stuck after `Init parallel begin` and the engine never becomes ready.",
+  "cause": "MessageQueue picks a local reader from shared-memory visibility alone, so ranks that share /dev/shm but not a network namespace wait on each other.",
+  "workaround": "Set SGLANG_USE_MESSAGE_QUEUE_BROADCASTER=0 on both ranks and restart.",
+  "fix_ref": "https://github.com/sgl-project/sglang/pull/53445",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-33041",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/33041",
+  "state": "closed",
+  "title": "[Bug]: vLLM hangs after NCCL init with TP=2 on Blackwell GPUs (CUDA 13.0, NCCL 2.27.7)",
+  "architectures": [],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [
+   "blackwell"
+  ],
+  "versions": {
+   "affected": "0.14.1",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=2"
+  ],
+  "symptom": "vLLM hangs during engine startup when using --tensor-parallel-size 2 on a dual-Blackwell setup.",
+  "cause": "NCCL hangs after init on this host; commenters tie it to IOMMU or ACS being enabled.",
+  "workaround": "Disable ACS and IOMMU in the BIOS, or set NCCL_P2P_DISABLE=1 with --disable-custom-all-reduce.",
+  "fix_ref": null,
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-37553",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/37553",
+  "state": "closed",
+  "title": "[Bug]: Mistral-Small-4-119B-2603 fails on 8x RTX 3090 (SM 8.6) with vLLM v0.17.1: no valid MLA attention backend",
+  "architectures": [],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [
+   "ampere"
+  ],
+  "versions": {
+   "affected": "0.17.1",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError: No valid attention backend found for cuda with AttentionSelectorConfig(head_size=320, dtype=torch.bfloat16, kv_cache_dtype=auto, ...",
+  "cause": "No MLA attention backend is valid for this model on SM 8.6.",
+  "workaround": null,
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-38122",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/38122",
+  "state": "open",
+  "title": "[Bug]: Qwen 3.5 fails to load from GGUF",
+  "architectures": [],
+  "models": [
+   "unsloth/Qwen3.5-27B-GGUF"
+  ],
+  "quantization": [
+   "gguf"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": null,
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "RuntimeError: Unknown gguf model_type: qwen3_5",
+  "cause": "The GGUF loader does not know the qwen3_5 model type.",
+  "workaround": null,
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-38587",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/38587",
+  "state": "open",
+  "title": "[Bug]: RCCL RDNA3 gfx1100 Tp2 ROCM at startup",
+  "architectures": [],
+  "models": [
+   "meta-llama/Llama-3.1-8B-Instruct"
+  ],
+  "quantization": [],
+  "gpu_families": [
+   "amd"
+  ],
+  "versions": {
+   "affected": "0.18.1rc1.dev344+gbf0e29b75",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=2"
+  ],
+  "symptom": "RuntimeError: NCCL error: unhandled cuda error (run with NCCL_DEBUG=INFO for details)",
+  "cause": "A commenter traced it to newer RCCL builds whose device kernels need a hostcall buffer, which requires PCIe atomics the GPU link does not provide.",
+  "workaround": "Use the RCCL 2.27.7 build 38 library from ROCm 7.1.1.",
+  "fix_ref": null,
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-38980",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/38980",
+  "state": "closed",
+  "title": "[Bug]: ModelOpt NVFP4 Qwen3-30B-A3B export fails to load on DGX Spark/GB10 (missing _double_scale key)",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3-30B-A3B-Instruct-2507"
+  ],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.15.1+nv26.2",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "KeyError: layers.28.mlp.experts.w2_weight_quantizer._double_scale",
+  "cause": "The loader looks for w2_weight_quantizer._double_scale while the exported checkpoint names the keys with down_proj, gate_proj and up_proj.",
+  "workaround": null,
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-41525",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/41525",
+  "state": "closed",
+  "title": "[Bug]: the A800 architecture cannot start the glm5.1 model.",
+  "architectures": [
+   "GlmMoeDsaForCausalLM"
+  ],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [
+   "ampere"
+  ],
+  "versions": {
+   "affected": "v0.19.1 or v0.20.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError: No valid attention backend found for cuda with AttentionSelectorCon...",
+  "cause": "The sparse MLA backends this model needs report compute capability not supported on the A800.",
+  "workaround": null,
+  "fix_ref": null,
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-42229",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/42229",
+  "state": "open",
+  "title": "[Bug]:  ValueError: GGUF model with architecture deepseek2 is not supported yet.",
+  "architectures": [],
+  "models": [],
+  "quantization": [
+   "gguf"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": null,
+   "fixed_in": null
+  },
+  "flags": [
+   "--load-format=gguf"
+  ],
+  "symptom": "ValueError: GGUF model with architecture deepseek2 is not supported yet.",
+  "cause": "The vLLM GGUF loader does not support the deepseek2 GGUF architecture.",
+  "workaround": null,
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-42384",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/42384",
+  "state": "closed",
+  "title": "[Bug]: DeepSeek-V4-Pro TP=16 fails fp8 block-shape check on shared_experts.down_proj — contradicts the official recipe",
+  "architectures": [],
+  "models": [
+   "deepseek-ai/DeepSeek-V4-Pro"
+  ],
+  "quantization": [
+   "fp8"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.20.2",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=16"
+  ],
+  "symptom": "ValueError: Weight input_size_per_partition = 192 is not divisible by weight quantization block_k = 128.",
+  "cause": "At TP=16 the shared expert size 3072 gives 192 per rank, which is not a multiple of the FP8 block size 128.",
+  "workaround": "Use --tensor-parallel-size 8, or DP2-TP8 with expert parallel.",
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-42587",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/42587",
+  "state": "closed",
+  "title": "[Bug]: vllm serve crashes at engine init for several --kv-cache-dtype values accepted by CLI (fp8_ds_mla, fp8_e5m2, fp8_inc, bfloat16)",
+  "architectures": [],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.14.1",
+   "fixed_in": null
+  },
+  "flags": [
+   "--kv-cache-dtype=fp8_ds_mla",
+   "--kv-cache-dtype=fp8_e5m2",
+   "--kv-cache-dtype=fp8_inc",
+   "--kv-cache-dtype=bfloat16"
+  ],
+  "symptom": "ValueError: No valid attention backend found for cuda with AttentionSelectorConfig(head_size=128, dtype=torch.bfloat16, kv_cache_dtype=bfloat16, ...",
+  "cause": "Several --kv-cache-dtype values are accepted by the CLI but rejected later by internal attention checks.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/42685",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-44081",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/44081",
+  "state": "open",
+  "title": "[Bug]: v0.22.0 fails to load nvidia/Qwen3.6-35B-A3B-NVFP4: lm_head.input_scale not registered",
+  "architectures": [
+   "Qwen3_5MoeForCausalLM"
+  ],
+  "models": [
+   "nvidia/Qwen3.6-35B-A3B-NVFP4"
+  ],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.22.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError: There is no module or parameter named 'lm_head.input_scale' in Qwen3_5MoeForCausalLM.",
+  "cause": "The checkpoint quantizes lm_head but v0.22.0 builds the head unquantized, so the scale tensors have nowhere to load.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/42124",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-47159",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/47159",
+  "state": "open",
+  "title": "[Bug]: triton_w4a16_gemm assert qzeros.shape == (K // group_size, N // 8) fails on GPTQ models",
+  "architectures": [],
+  "models": [
+   "raydelossantos/Qwen3.6-27B-GPTQ-Int4",
+   "btbtyler09/Qwen3.6-27B-GPTQ-4bit"
+  ],
+  "quantization": [
+   "gptq"
+  ],
+  "gpu_families": [
+   "amd"
+  ],
+  "versions": {
+   "affected": null,
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "AssertionError: qzeros shape mismatch: torch.Size([4352, 40])",
+  "cause": "The Triton W4A16 kernel transposes qzeros for GPTQ checkpoints whose layout is already the expected one.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/47770",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-47436",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/47436",
+  "state": "open",
+  "title": "[Bug]: Block-scaled FP8 (compressed-tensors W8A8) crashes on load on SM120 Blackwell (RTX PRO 6000), v0.24.0 — DeepGEMM \"Unknown SF transformation\" assertion",
+  "architectures": [],
+  "models": [
+   "RedHatAI/gemma-4-31B-it-FP8-block"
+  ],
+  "quantization": [
+   "fp8",
+   "compressed-tensors"
+  ],
+  "gpu_families": [
+   "blackwell"
+  ],
+  "versions": {
+   "affected": "0.24.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "RuntimeError: Assertion error (/workspace/.deps/deepgemm-src/csrc/apis/layout.hpp:59): Unknown SF transformation",
+  "cause": "v0.24.0 treats SM120 as DeepGEMM-capable but the pinned DeepGEMM revision has no SM120 scale-factor layout transform.",
+  "workaround": "Set VLLM_USE_DEEP_GEMM=0 so the Cutlass block-scaled kernel is used.",
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-48449",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/48449",
+  "state": "closed",
+  "title": "[Bug]: MiniCPM-V-4.6 fails to load on vLLM 0.25.0 — ValueError: There is no module or parameter named 'qkqkv_proj' in MiniCPMV4_6ViTWindowAttentionSelfAttn",
+  "architectures": [],
+  "models": [
+   "openbmb/MiniCPM-V-4.6"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.25.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError: There is no module or parameter named 'qkqkv_proj' in MiniCPMV4_6ViTWindowAttentionSelfAttn.",
+  "cause": "The stacked weight-name mapping rewrites qkv_proj to qkqkv_proj, a parameter the vision attention module does not have.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/48564",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-49064",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/49064",
+  "state": "open",
+  "title": "[Usability] Engine fails to start when available Mamba cache blocks < max_num_seqs (hybrid models + LoRA) — suggest auto-clamping with a warning",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3.8-27B"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.24.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError: max_num_seqs (256) exceeds available Mamba cache blocks (243). Each decode sequence requires one Mamba cache block ...",
+  "cause": "On hybrid attention and SSM models each decode sequence needs one Mamba cache block, and the memory left after weights gives fewer blocks than max_num_seqs.",
+  "workaround": "Pass --max-num-seqs at or below the block count the error prints, or raise --gpu-memory-utilization.",
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-49368",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/49368",
+  "state": "open",
+  "title": "[Bug]: GLM-4.1V fails to start at tensor-parallel size 32 — vision tower head-count mismatch",
+  "architectures": [],
+  "models": [
+   "zai-org/GLM-4.1V-9B-Thinking"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.24.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=32"
+  ],
+  "symptom": "AssertionError: 12 is not divisible by 32",
+  "cause": "The vision tower has 12 attention heads and the model code does not pass the head count to the helper that would fall back to no tensor parallelism for the tower.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/49479",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-49497",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/49497",
+  "state": "open",
+  "title": "[Bug]: FlashInfer sampler JIT crashes engine startup when nvcc isn't discoverable (default precompiled/wheel install) — no fallback to native sampler",
+  "architectures": [],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.23.1rc1.dev1392+g910cc8543",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "RuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda' doesn't exist",
+  "cause": "The FlashInfer sampler is auto-selected and needs nvcc to JIT its sampling module, with no fallback to the native sampler.",
+  "workaround": "Set VLLM_USE_FLASHINFER_SAMPLER=0.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/51741",
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-49949",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/49949",
+  "state": "open",
+  "title": "[Bug]: Nemotron 3 Nano NVFP4 plain TP8 fails on Hopper/Marlin because TP shards split 16-value quantization groups",
+  "architectures": [],
+  "models": [
+   "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4"
+  ],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [
+   "hopper"
+  ],
+  "versions": {
+   "affected": "0.26.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=8"
+  ],
+  "symptom": "RuntimeError: moe_wna16_marlin_gemm, /workspace/csrc/libtorch_stable/moe/marlin_moe_wna16/ops.cu:768,",
+  "cause": "TP8 splits the 1,856-wide expert dimension into 232 values per rank, which cuts through the 16-value NVFP4 quantization groups.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/49951",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-50961",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/50961",
+  "state": "closed",
+  "title": "[Bug]: GraniteMoeHybrid fails to load with pipeline_parallel_size > 1 (KeyError on another rank's layer)",
+  "architectures": [
+   "GraniteMoeHybridForCausalLM"
+  ],
+  "models": [
+   "ibm-granite/granite-4.0-tiny-preview"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.1.dev199+gc4e9f09de (main @ c4e9f09)",
+   "fixed_in": null
+  },
+  "flags": [
+   "--pipeline-parallel-size>1"
+  ],
+  "symptom": "KeyError: 'layers.0.block_sparse_moe.gate.weight'",
+  "cause": "Every pipeline rank iterates the full checkpoint and the loader indexes parameters that belong to layers on another rank.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/50962",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-51188",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/51188",
+  "state": "open",
+  "title": "[Bug]: compressed-tensors models with format: dense sparsity_config fail to load",
+  "architectures": [],
+  "models": [
+   "RedHatAI/granite-3.1-8b-instruct-quantized.w4a16"
+  ],
+  "quantization": [
+   "compressed-tensors"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.24.x",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "DeprecationWarning: Sparsity support has been removed from compressed-tensors.",
+  "cause": "The sparsity guard raises for any sparsity_config with targets, including format: dense configs that need no sparse handling.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/51189",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-51744",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/51744",
+  "state": "closed",
+  "title": "[Bug]: vllm/vllm-openai:latest fails to start Gemma4 with Transformers 5.15.0",
+  "architectures": [],
+  "models": [
+   "yasu-oh/gemma-4-31B-it-qat-NVFP4",
+   "google/gemma-4-26B-A4B-it"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "vllm/vllm-openai:latest with Transformers 5.15.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "AmbiguousGlobalPerLayerAttributeError: 'head_dim' is a per-layer attribute and may vary across layers.",
+  "cause": "Transformers 5.15.0 makes Gemma 4 head_dim a per-layer attribute and vLLM reads the global value.",
+  "workaround": "Downgrade Transformers to 5.14.1.",
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-51884",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/51884",
+  "state": "open",
+  "title": "[Bug]: FP8 block-scaled weights fail on sm120 (RTX 5090) — DeepGEMM \"Unknown SF transformation\" during process_weights_after_loading",
+  "architectures": [],
+  "models": [
+   "RedHatAI/Muse-Glimmer-30B-FP8-block"
+  ],
+  "quantization": [
+   "fp8",
+   "compressed-tensors"
+  ],
+  "gpu_families": [
+   "blackwell"
+  ],
+  "versions": {
+   "affected": "0.26.1rc1.dev608+g99a10304d",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "RuntimeError: Assertion error (/workspace/.deps/deepgemm-src/csrc/apis/layout.hpp:60): Unknown SF transformation",
+  "cause": "vLLM routes block-scaled FP8 weights to DeepGEMM on sm120, and the pinned DeepGEMM has no scale-factor transform for that architecture.",
+  "workaround": "Set VLLM_USE_DEEP_GEMM=0 and VLLM_MOE_USE_DEEP_GEMM=0.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/52035",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-52111",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/52111",
+  "state": "open",
+  "title": "[Bug]: DeepSeek-V4-Flash-0731 MTP speculative decoding fails to load: KeyError 'model.layers.43.mtp_block.main_norm.weight'",
+  "architectures": [
+   "DeepseekV4ForCausalLM"
+  ],
+  "models": [
+   "deepseek-ai/DeepSeek-V4-Flash-0731"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "nightly 2026-08-12, g3ee2df303",
+   "fixed_in": null
+  },
+  "flags": [
+   "--speculative-config method=mtp"
+  ],
+  "symptom": "KeyError: 'model.layers.43.mtp_block.main_norm.weight'",
+  "cause": "The MTP loader's expected parameter names do not match this checkpoint's MTP tensor names.",
+  "workaround": "Serve without the MTP speculative config.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/52165",
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-52761",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/52761",
+  "state": "open",
+  "title": "[Bug]: deepseek-v4-flash-0731: Pipeline parallelism is not supported for this model.",
+  "architectures": [
+   "DeepseekV4ForCausalLM"
+  ],
+  "models": [
+   "deepseek-ai/DeepSeek-V4-Flash-0731"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.27.1",
+   "fixed_in": null
+  },
+  "flags": [
+   "--pipeline-parallel-size>1",
+   "--speculative-config method=dspark"
+  ],
+  "symptom": "NotImplementedError: Pipeline parallelism is not supported for this model. Supported models implement the `SupportsPP` interface.",
+  "cause": "The DSpark draft model config is verified against the pipeline-parallel setting and the draft does not implement SupportsPP.",
+  "workaround": null,
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-52997",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/52997",
+  "state": "open",
+  "title": "[Bug]: Block-FP8 tensor-parallel shards smaller than a quantization block fail to load",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3.6-35B-A3B-FP8"
+  ],
+  "quantization": [
+   "fp8"
+  ],
+  "gpu_families": [
+   "hopper"
+  ],
+  "versions": {
+   "affected": "0.26.1rc1.dev942+g5a4c8d992",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=8"
+  ],
+  "symptom": "ValueError: Weight input_size_per_partition = 64 is not divisible by weight quantization block_k = 128.",
+  "cause": "At TP8 each rank owns 64 elements of the 512-wide expert dimension, which is smaller than the 128-by-128 FP8 quantization block.",
+  "workaround": "Force the Marlin FP8 path with VLLM_TEST_FORCE_FP8_MARLIN=1.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/52915",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-53950",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/53950",
+  "state": "open",
+  "title": "[Bug]: Granite 4.2 30B FP8 fails to load: missing layers.0.mlp.down_proj.weight_scale",
+  "architectures": [],
+  "models": [
+   "ibm-granite/granite-4.2-30b-fp8",
+   "ibm-granite/granite-4.2-30b-nvfp4"
+  ],
+  "quantization": [
+   "fp8"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.28.0 and 0.27.1",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError: There is no module or parameter named 'layers.0.mlp.down_proj.weight_scale' in GraniteModel.",
+  "cause": "The checkpoint ships FP8 weights with weight_scale tensors but its config.json has no quantization_config, so layers are built unquantized.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/53967",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-54178",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/54178",
+  "state": "closed",
+  "title": "[Bug]: Qwen3.8-Flash-Next-FP8 checkpoint cannot load with tp_size=2/4/8 — MoE gate+up weight output_size (80) not divisible by FP8 block_n=128",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3.8-Flash-Next-FP8"
+  ],
+  "quantization": [
+   "fp8"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": null,
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=2/4/8"
+  ],
+  "symptom": "ValueError: The output_size of gate's and up's weight = 80 is not divisible by weight quantization block_n = 128.",
+  "cause": "The fused gate and up output size of 640 is split across TP ranks into a size that is not a multiple of the FP8 block size 128.",
+  "workaround": null,
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-54318",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/54318",
+  "state": "open",
+  "title": "[Bug]: Qwen3.8-Flash-Next-FP8 fails to start on 4x NVIDIA A100 due to fp8e4nv unsupported in SM80",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3.8-Flash-Next-FP8"
+  ],
+  "quantization": [
+   "fp8"
+  ],
+  "gpu_families": [
+   "ampere"
+  ],
+  "versions": {
+   "affected": "vllm/vllm-openai:qwen38-flash-next image",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError(\"type fp8e4nv not supported in this architecture. The supported fp8 dtypes are ('fp8e4b15', 'fp8e5')\")",
+  "cause": "The Triton fused-MoE kernel is selected without a compute-capability check and uses the fp8e4nv dtype, which SM80 does not support.",
+  "workaround": "Pass --moe-backend marlin, which uses weight-only FP8 on SM80.",
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-54765",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/54765",
+  "state": "open",
+  "title": "[Bug]: Qwen3.8-Flash-Next: ModelOpt NVFP4 checkpoint with an FP8-quantized PLE n-gram table fails to load (ngram_embedding.weight_scale)",
+  "architectures": [],
+  "models": [
+   "RadixArk/Qwen3.8-Flash-Next-NVFP4",
+   "nvidia/Qwen3.8-Flash-Next-NVFP4"
+  ],
+  "quantization": [
+   "nvfp4",
+   "fp8"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "nightly-7c5dc571 (2026-09-01) and vllm/vllm-openai:qwen38-flash-next",
+   "fixed_in": "0.31.1rc1.dev173+g8cbd5d030 (nightly)"
+  },
+  "flags": [],
+  "symptom": "ValueError: There is no module or parameter named 'ngram_embedding.weight_scale' in Qwen4ExpNGramEmbedding.",
+  "cause": "The FP8 PLE embedding method is only selected when the whole checkpoint is FP8, so under a ModelOpt NVFP4 config no weight_scale parameter is registered.",
+  "workaround": null,
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-56197",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/56197",
+  "state": "closed",
+  "title": "[Bug]: --kv-cache-dtype int4_per_token_head aborts engine init for any head_size that is not a power of two",
+  "architectures": [],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.29.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--kv-cache-dtype=int4_per_token_head"
+  ],
+  "symptom": "AssertionError: Requires power-of-2 dim, got 96",
+  "cause": "int4_per_token_head rotates K/V with a Hadamard transform that is only defined for power-of-two head sizes.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/56198",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-56206",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/56206",
+  "state": "closed",
+  "title": "[Bug]: v0.29.0 fails to start on SM110 (AGX Thor) — illegal memory access in Qwen GDN prefill warmup",
+  "architectures": [],
+  "models": [],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.29.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "torch.AcceleratorError: CUDA error: an illegal memory access was encountered",
+  "cause": "The v0.29.0 build leaves SM110 out of the fused GDN decode kernel architectures.",
+  "workaround": "Set VLLM_GDN_DECODE_KERNEL=triton.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/53835",
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-57469",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/57469",
+  "state": "open",
+  "title": "DeepSeek-V4.1-Flash fails to start on 4x H20 (587GiB RAM): MEMCG OOM from host shmem (TP weight shards), not GPU",
+  "architectures": [],
+  "models": [
+   "deepseek-ai/DeepSeek-V4.1-Flash"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "v0.29.1rc1.dev128+gcd10ed6f9",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=4"
+  ],
+  "symptom": "Memory cgroup out of memory: Killed process (VLLM::Worker_TP)",
+  "cause": "During loading the pinned Engram tables are charged as host shared memory and rounded up, and checkpoint page cache piles on top, exceeding the node RAM limit.",
+  "workaround": "Set PYTORCH_ALLOC_CONF=pinned_max_round_threshold_mb:64, suggested in a comment as the quickest thing to try.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/66386",
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-58943",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/58943",
+  "state": "open",
+  "title": "[Bug]: Official MiniCPM-V-4.6 GPTQ/AWQ checkpoints fail to load (vision tower built quantized)",
+  "architectures": [],
+  "models": [
+   "openbmb/MiniCPM-V-4.6-Thinking-GPTQ",
+   "openbmb/MiniCPM-V-4.6-GPTQ"
+  ],
+  "quantization": [
+   "gptq",
+   "awq"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.30.1rc1.dev221+gc8d7a7dd1",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "AttributeError: 'QKVParallelLinear' object has no attribute 'data'",
+  "cause": "The vision tower's linear layers are built as quantized although the checkpoint keeps the tower unquantized.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/59978",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-59756",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/59756",
+  "state": "closed",
+  "title": "[Bug]: Qwen3.8-Flash-Next (Qwen4Exp) fails to load on main after #57387: `ValueError: Invalid layer_type indexed_attention`",
+  "architectures": [
+   "Qwen4ExpForConditionalGeneration"
+  ],
+  "models": [
+   "RadixArk/Qwen3.8-Flash-Next-NVFP4"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.30.1rc1.dev558+g0cbac6cd1 with transformers 5.18.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError: Invalid layer_type indexed_attention",
+  "cause": "transformers 5.18.0 renames the layer type to indexed_attention, which the vLLM Qwen4Exp dispatchers do not handle.",
+  "workaround": "Pin transformers to 5.17.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/59621",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-60260",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/60260",
+  "state": "open",
+  "title": "[Bug]: `is_nvfp4_quantized` crashes on compressed-tensors configs whose `format` is a list (mixed NVFP4 + FP8 checkpoints)",
+  "architectures": [],
+  "models": [
+   "nm-testing/TinyLlama-1.1B-Chat-v1.0-NVFP4-FP8-Dynamic"
+  ],
+  "quantization": [
+   "nvfp4",
+   "fp8",
+   "compressed-tensors"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.30.1rc1.dev740+gaad4579bb",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "AttributeError: 'list' object has no attribute 'lower'",
+  "cause": "ModelConfig calls .lower() on the compressed-tensors format field, which is a list for mixed NVFP4 and FP8 checkpoints.",
+  "workaround": "Set enforce_eager=True, which happens to avoid the failing check.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/60332",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-60859",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/60859",
+  "state": "closed",
+  "title": "[Bug]: kv_cache_dtype=\"float16\" on a bf16 model crashes the engine during CUDA-graph capture — RuntimeError: query and key must have the same dtype (flash_api.cpp:601)",
+  "architectures": [],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.31.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--kv-cache-dtype=float16"
+  ],
+  "symptom": "RuntimeError: query and key must have the same dtype (flash_api.cpp:601)",
+  "cause": "No check compares kv_cache_dtype with the model dtype, so a float16 KV cache with a bf16 model fails on the FLASH_ATTN path.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/60885",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-61847",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/61847",
+  "state": "open",
+  "title": "[Bug]: dtype=\"float32\" crashes unquantized MoE models at startup on SM89 — Triton fused-MoE picks a 128 KiB shared-memory kernel (Required 131072 > limit 101376)",
+  "architectures": [],
+  "models": [
+   "ibm/PowerMoE-3b",
+   "ai21labs/Jamba-tiny-dev"
+  ],
+  "quantization": [],
+  "gpu_families": [
+   "ada"
+  ],
+  "versions": {
+   "affected": "0.31.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--dtype=float32"
+  ],
+  "symptom": "triton.runtime.errors.OutOfResources: out of resource: shared memory, Required: 131072, Hardware limit: 101376",
+  "cause": "With dtype float32 the Triton fused-MoE default config picks tile sizes that need 128 KiB of shared memory, above the SM89 limit.",
+  "workaround": "Use dtype float16.",
+  "fix_ref": null,
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-62320",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/62320",
+  "state": "open",
+  "title": "[Bug]: --attention-backend b12x cannot serve hybrid attention/mamba models on v0.32.0 — hybrid page alignment inflates the block size to 2176, B12X only supports (64, 128)",
+  "architectures": [
+   "Qwen3_5MoeForConditionalGeneration"
+  ],
+  "models": [],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.32.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--attention-backend=b12x"
+  ],
+  "symptom": "ValueError: Aligned KV cache block size 2176 is not supported by attention backend(s): B12X.",
+  "cause": "Hybrid page alignment raises the attention block size to 2176 and the b12x backend only accepts 64 or 128.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/62376",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-62848",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/62848",
+  "state": "open",
+  "title": "[Bug]: DeepSeek-OCR / Unlimited-OCR fail to start on v0.32.0 — Triton CompilationError \"Cannot access global variable LOG2E\" in DeepEncoder rel-pos attention kernel",
+  "architectures": [],
+  "models": [
+   "baidu/Unlimited-OCR"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.32.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "NameError(\"Cannot access global variable LOG2E from within @jit'ed function.",
+  "cause": "The DeepEncoder Triton kernel uses a plain Python float global, which Triton 3.7 rejects.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/62858",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-63474",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/63474",
+  "state": "open",
+  "title": "[Bug]: API server crashes with IndexError in structured-decisions init when tokenizer files are missing (after engine fully loads)",
+  "architectures": [],
+  "models": [
+   "nvidia/Qwen3.8-27B-NVFP4"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.32.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "IndexError: list index out of range",
+  "cause": "With tokenizer files missing from a local checkpoint the tokenizer encodes to an empty list, and structured-decisions init only catches ValueError.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/63515",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-63662",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/63662",
+  "state": "open",
+  "title": "[Bug]: MoE models crash at startup on torch 2.11.0 with default VLLM_USE_LAYERNAME=1 (inductor assert __obj_flatten__ on hoisted LayerName)",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen3-Next-80B-A3B-Instruct"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.25.1 with torch 2.11.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "torch._inductor.exc.InductorError: AssertionError:",
+  "cause": "On torch 2.11.0 the default VLLM_USE_LAYERNAME=1 hoists an opaque LayerName object that hits an inductor assert during the startup compile.",
+  "workaround": "Set VLLM_USE_LAYERNAME=0.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/63862",
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-63984",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/63984",
+  "state": "open",
+  "title": "[Bug]: Flint fails to start with --tensor-parallel-size 4 (silu_and_mul assert); TP8 fails Triton compile",
+  "architectures": [],
+  "models": [
+   "RecursiveSI/flint"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.32.1rc1.dev514+g256d8b40d",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=4"
+  ],
+  "symptom": "AssertionError",
+  "cause": "The Flint silu_and_mul op asserts d % min(d, 1024) == 0, and TP4 shards the 6144 intermediate size to 1536.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/63986",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-65873",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/65873",
+  "state": "open",
+  "title": "[Bug]: Nemotron-3.5-Super-VL-120B-A12B-NVFP4 native MTP fails to load: \"start (0) + length (5376) exceeds dimension size (2688)\"",
+  "architectures": [],
+  "models": [
+   "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4"
+  ],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.33.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--speculative-config.method=mtp"
+  ],
+  "symptom": "RuntimeError: start (0) + length (5376) exceeds dimension size (2688)",
+  "cause": "The quantization config is dropped when the text config is promoted, so the MTP draft is built unquantized and its NVFP4 weights do not fit.",
+  "workaround": "Serve without --speculative-config.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/66847",
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-66835",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/66835",
+  "state": "open",
+  "title": "[Bug]:  LFM2.5-2.6B GGUF fails to load: missing embed_tokens.qweight_type",
+  "architectures": [
+   "Lfm2ForCausalLM"
+  ],
+  "models": [
+   "LiquidAI/LFM2.5-2.6B-GGUF"
+  ],
+  "quantization": [
+   "gguf"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.33.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError: There is no module or parameter named 'embed_tokens.qweight_type' in Lfm2Model.",
+  "cause": "Lfm2Model creates embed_tokens without quant_config, so the GGUF embedding parameters are never registered.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/66863",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-66960",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/66960",
+  "state": "open",
+  "title": "[Feature]: Sparse-MLA (DSA) attention on SM80/Ampere (A100): no selectable backend since the Triton fallback removal — SM80 DSA models hard-fail at engine init",
+  "architectures": [
+   "GlmMoeDsaForCausalLM"
+  ],
+  "models": [
+   "FenomAI/GLM-5.2-AWQ-INT4"
+  ],
+  "quantization": [],
+  "gpu_families": [
+   "ampere"
+  ],
+  "versions": {
+   "affected": "0.33.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "ValueError: No valid attention backend found for cuda with AttentionSelectorConfig(head_size=576, dtype=torch.bfloat16, kv_cache_dtype=auto, ...",
+  "cause": "No sparse-MLA (DSA) attention backend supports SM80 since the Triton fallback was removed, so backend selection fails at engine init.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/68633",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-67862",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/67862",
+  "state": "open",
+  "title": "[Bug]: MiniMax-M3.1-Flash NVFP4 packed routed experts fail to load with TP8 / TP4+PP2 on v0.33.0 (192 vs 384 in RoutedExperts._load_w13)",
+  "architectures": [],
+  "models": [
+   "MiniMaxAI/MiniMax-M3.1-Flash"
+  ],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.33.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--tensor-parallel-size=8",
+   "--tensor-parallel-size=4 --pipeline-parallel-size=2"
+  ],
+  "symptom": "RuntimeError: The size of tensor a (192) must match the size of tensor b (384) at non-singleton dimension 1",
+  "cause": "The destination parameter is built for the packed NVFP4 layout while the loaded shard is sliced as if the weight were unpacked.",
+  "workaround": "Use plain --tensor-parallel-size 4, which loads on the same build.",
+  "fix_ref": null,
+  "confidence": "medium"
+ },
+ {
+  "id": "vllm-68316",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/68316",
+  "state": "open",
+  "title": "[Bug]: Raw OOM with misleading hint when model weights nearly fill the GPU (lost \"not enough GPU memory\" message)",
+  "architectures": [],
+  "models": [
+   "Qwen/Qwen2.5-7B-Instruct"
+  ],
+  "quantization": [],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.34.0",
+   "fixed_in": null
+  },
+  "flags": [],
+  "symptom": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 150.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 93.81 MiB is free.",
+  "cause": "The weights take about 14.3 of 14.56 GiB and sampler buffers are allocated before memory profiling, so the clear not-enough-memory check is never reached.",
+  "workaround": null,
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/68439",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-68523",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/68523",
+  "state": "open",
+  "title": "[Bug]: Gemma 4 NVFP4 with FP8 KV cache does not start on B300 with v0.34.0 (missing TRTLLM-GEN context kernel for head_dim 512; FlashInfer FP8-query assert when TRT-LLM attention is off)",
+  "architectures": [],
+  "models": [
+   "nvidia/Gemma-4-26B-A4B-NVFP4",
+   "nvidia/Gemma-4-31B-IT-NVFP4"
+  ],
+  "quantization": [
+   "nvfp4"
+  ],
+  "gpu_families": [
+   "blackwell"
+  ],
+  "versions": {
+   "affected": "0.34.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--kv-cache-dtype=fp8"
+  ],
+  "symptom": "Missing TRTLLM-GEN kernel (context)",
+  "cause": "An FP8 query is selected on SM100-class GPUs even though TRTLLM-GEN has no kernel for head dim 512.",
+  "workaround": "Add --attention-config '{\"use_trtllm_attention\": false, \"disable_flashinfer_q_quantization\": true}'.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/70247",
+  "confidence": "high"
+ },
+ {
+  "id": "vllm-68627",
+  "runtime": "vllm",
+  "url": "https://github.com/vllm-project/vllm/issues/68627",
+  "state": "open",
+  "title": "[Bug]: KeyError loading a w4afp8 checkpoint with --speculative-config.method mtp (MTP loader skips the quantization checkpoint mapper)",
+  "architectures": [],
+  "models": [
+   "PhalaCloud/GLM-5.3-W4AFP8"
+  ],
+  "quantization": [
+   "fp8"
+  ],
+  "gpu_families": [],
+  "versions": {
+   "affected": "0.34.0",
+   "fixed_in": null
+  },
+  "flags": [
+   "--speculative-config.method=mtp"
+  ],
+  "symptom": "KeyError: model.layers.78.mtp_block.mlp.experts.routed_experts.w2_weight",
+  "cause": "The MTP draft loader calls its own load_weights and skips the quantization checkpoint weight mapper.",
+  "workaround": "Serve without --speculative-config.method mtp.",
+  "fix_ref": "https://github.com/vllm-project/vllm/pull/68632",
+  "confidence": "high"
+ }
+]

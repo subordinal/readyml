@@ -152,7 +152,8 @@ def check_known(info, rt, gpu, records=None):
             parts.append(f"Fixed in {r['versions']['fixed_in']}.")
         if r.get("workaround"):
             parts.append(f"Workaround: {r['workaround'].rstrip('.')}.")
-        out.append(finding(WARN, "known issue", " ".join(parts), r["url"]))
+        level = WARN if hit["version_confirmed"] or hit["exact_model"] else INFO
+        out.append(finding(level, "known issue", " ".join(parts), r["url"]))
     return out
 
 

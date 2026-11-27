@@ -46,10 +46,13 @@ class MatchTest(unittest.TestCase):
         h = hits(dict(RECORD, versions={"affected": "nightly", "fixed_in": None}))
         self.assertFalse(h[0]["version_confirmed"])
 
-    def test_record_without_model_needs_quantization(self):
-        loose = dict(RECORD, architectures=[], models=[])
-        self.assertEqual(len(hits(loose)), 1)
-        self.assertEqual(hits(dict(loose, quantization=[])), [])
+    def test_record_without_model_or_architecture_never_matches(self):
+        self.assertEqual(hits(dict(RECORD, architectures=[], models=[])), [])
+
+    def test_unconfirmed_architecture_match_is_info(self):
+        loose = dict(RECORD, versions={"affected": "nightly", "fixed_in": None})
+        result = check.run(MODEL, RT, gpus.lookup("a100-80"), 1, True, records=[loose])
+        self.assertEqual([f["level"] for f in result["findings"] if f["check"] == "known issue"], ["info"])
 
     def test_model_quantization_tags(self):
         self.assertIn("fp8", known.model_quantization(MODEL))
