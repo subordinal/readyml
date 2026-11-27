@@ -12,6 +12,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from readyml import vllm
+from readyml.runtimes import version_key
 
 OUT = Path("src/readyml/data/vllm_support.json")
 
@@ -22,7 +23,7 @@ def release_versions():
         check=True, capture_output=True, text=True,
     ).stdout.split()
     found = [t[1:] for t in raw if re.fullmatch(r"v\d+\.\d+\.\d+", t)]
-    return sorted(found, key=vllm.version_key)
+    return sorted(found, key=version_key)
 
 
 def parse(version):

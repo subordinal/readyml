@@ -1,6 +1,7 @@
 """Static preflight: findings from model metadata, a runtime release and a GPU."""
 from . import vllm
 from .hub import weight_files
+from .runtimes import version_key
 
 GIB = 1024**3
 PASS, WARN, FAIL, INFO = "pass", "warn", "fail", "info"
@@ -38,40 +39,46 @@ def quant_row(info):
     return "unknown", method or "unrecognised", False
 
 
-def check_architecture(info, registry, version):
+def check_architecture(info, rt):
     archs = (info.get("config") or {}).get("architectures") or []
-    src = vllm.RAW.format(version=version, path=vllm.REGISTRY)
+    registry, label, src = rt["registry"], f"{rt['label']} {rt['version']}", rt["source"]
     if not archs:
         return [finding(WARN, "architecture", "config.json names no architecture; cannot check support", src)]
     out = []
     for arch in archs:
         if arch in registry["native"]:
-            out.append(finding(PASS, "architecture", f"{arch} is in the vLLM {version} model registry", src))
+            out.append(finding(PASS, "architecture", f"{arch} is in the {label} model registry", src))
         elif arch in registry["transformers"]:
-            out.append(finding(WARN, "architecture", f"{arch} runs through the Transformers backend in vLLM {version}, not a native implementation", src))
+            out.append(finding(WARN, "architecture", f"{arch} runs through the Transformers backend in {label}, not a native implementation", src))
         elif arch in registry["removed"]:
-            out.append(finding(FAIL, "architecture", f"{arch} was removed from vLLM; last supported in {registry['removed'][arch]}", src))
+            out.append(finding(FAIL, "architecture", f"{arch} was removed from {rt['label']}; last supported in {registry['removed'][arch]}", src))
         elif arch in registry["plugin"]:
             out.append(finding(WARN, "architecture", f"{arch} needs an out-of-tree plugin: {registry['plugin'][arch]}", src))
         else:
-            out.append(_unlisted(arch, version, src))
+            out.append(_unlisted(arch, rt))
     return out
 
 
-def _unlisted(arch, version, src):
-    seen = ((vllm.support_index() or {}).get("native") or {}).get(arch)
-    if seen and vllm.version_key(seen["first"]) > vllm.version_key(version):
-        return finding(FAIL, "architecture", f"{arch} is not in vLLM {version}; native support starts in {seen['first']}", src)
-    if seen and vllm.version_key(seen["last"]) < vllm.version_key(version):
-        return finding(FAIL, "architecture", f"{arch} is not in vLLM {version}; last release with native support is {seen['last']}", src)
-    return finding(WARN, "architecture", f"{arch} is not in the vLLM {version} registry; it will only load if the Transformers fallback can resolve it", src)
+def _unlisted(arch, rt):
+    label, version, src = rt["label"], rt["version"], rt["source"]
+    seen = ((rt.get("index") or {}).get("native") or {}).get(arch)
+    if seen and version_key(seen["first"]) > version_key(version):
+        return finding(FAIL, "architecture", f"{arch} is not in {label} {version}; native support starts in {seen['first']}", src)
+    if seen and version_key(seen["last"]) < version_key(version):
+        return finding(FAIL, "architecture", f"{arch} is not in {label} {version}; last release with native support is {seen['last']}", src)
+    if not rt["fallback"]:
+        return finding(FAIL, "architecture", f"{arch} is not in the {label} {version} registry, and this release has no Transformers fallback", src)
+    return finding(WARN, "architecture", f"{arch} is not in the {label} {version} registry; it will only load if the Transformers fallback can resolve it", src)
 
 
-def check_quantization(info, methods, gpu, version):
+def check_quantization(info, rt, gpu):
     row, label, certain = quant_row(info)
-    docs = vllm.MATRIX_DOCS.format(version=vllm.MATRIX_VERSION)
     if row is None:
         return [finding(PASS, "quantization", "model is not quantized")]
+    if rt["name"] != "vllm":
+        return [finding(INFO, "quantization", f"{label}: quantization support on {rt['label']} is not checked yet")]
+    version, methods = rt["version"], rt["methods"]
+    docs = vllm.MATRIX_DOCS.format(version=vllm.MATRIX_VERSION)
     if row == "unknown":
         level = INFO if label in methods else WARN
         known = "is a vLLM quantization method" if label in methods else f"is not in vLLM {version}'s quantization methods"
@@ -118,10 +125,10 @@ def check_artifact(info, pinned):
     return out
 
 
-def run(info, registry, methods, gpu, gpu_count, version, pinned):
+def run(info, rt, gpu, gpu_count, pinned):
     findings = (
-        check_architecture(info, registry, version)
-        + check_quantization(info, methods, gpu, version)
+        check_architecture(info, rt)
+        + check_quantization(info, rt, gpu)
         + check_memory(info, gpu, gpu_count)
         + check_artifact(info, pinned)
     )

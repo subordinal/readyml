@@ -1,9 +1,7 @@
 """What a vLLM release supports, read from its source at the release tag."""
 import ast
-import json
 import urllib.error
 import urllib.request
-from pathlib import Path
 
 RAW = "https://raw.githubusercontent.com/vllm-project/vllm/v{version}/{path}"
 REGISTRY = "vllm/model_executor/models/registry.py"
@@ -26,15 +24,6 @@ MATRIX = {
 
 class RuntimeSourceError(Exception):
     pass
-
-
-def version_key(version):
-    return tuple(int(part) for part in version.split("."))
-
-
-def support_index():
-    path = Path(__file__).parent / "data" / "vllm_support.json"
-    return json.loads(path.read_text()) if path.exists() else None
 
 
 def fetch_source(version, path):

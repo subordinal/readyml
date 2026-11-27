@@ -3,7 +3,7 @@ import json
 import unittest
 from pathlib import Path
 
-from readyml import check, gpus, vllm
+from readyml import check, gpus, runtimes, vllm
 
 FIX = Path(__file__).parent / "fixtures"
 REGISTRY = vllm.parse_registry((FIX / "vllm-0.34.0-registry.py").read_text())
@@ -11,8 +11,16 @@ METHODS = vllm.parse_quant_methods((FIX / "vllm-0.34.0-quantization.py").read_te
 MODEL = json.loads((FIX / "llama-3.1-8b-fp8.json").read_text())
 
 
-def run(model=MODEL, gpu="h100", count=1, pinned=True):
-    return check.run(model, REGISTRY, METHODS, gpus.lookup(gpu), count, "0.34.0", pinned)
+def fixture_source(version, path):
+    name = "registry" if path == vllm.REGISTRY else "quantization"
+    return (FIX / f"vllm-0.34.0-{name}.py").read_text()
+
+
+RT = runtimes.load_vllm("0.34.0", fetch=fixture_source)
+
+
+def run(model=MODEL, gpu="h100", count=1, pinned=True, rt=RT):
+    return check.run(model, rt, gpus.lookup(gpu), count, pinned)
 
 
 def levels(result, name):
@@ -76,10 +84,10 @@ class CheckTest(unittest.TestCase):
         self.assertEqual(levels(run(m), "architecture"), ["warn"])
 
     def test_architecture_newer_than_release_fails(self):
-        old = dict(REGISTRY, native=REGISTRY["native"] - {"Qwen3ForCausalLM"})
+        old = dict(RT, version="0.8.0", registry=dict(REGISTRY, native=REGISTRY["native"] - {"Qwen3ForCausalLM"}))
         m = copy.deepcopy(MODEL)
         m["config"]["architectures"] = ["Qwen3ForCausalLM"]
-        result = check.run(m, old, METHODS, gpus.lookup("h100"), 1, "0.8.0", True)
+        result = run(m, rt=old)
         arch = [f for f in result["findings"] if f["check"] == "architecture"][0]
         self.assertEqual(arch["level"], "fail")
         self.assertIn("starts in 0.8.4", arch["message"])
@@ -96,6 +104,31 @@ class CheckTest(unittest.TestCase):
         m = copy.deepcopy(MODEL)
         m["siblings"] = [s for s in m["siblings"] if "token" not in s["rfilename"]]
         self.assertIn("warn", levels(run(m), "artifact"))
+
+    def test_sglang_release_index(self):
+        rt = runtimes.load_sglang("0.5.23")
+        self.assertEqual(levels(run(rt=rt), "architecture"), ["pass"])
+        self.assertEqual(levels(run(rt=rt), "quantization"), ["info"])
+        m = copy.deepcopy(MODEL)
+        m["config"]["architectures"] = ["Qwen3ForCausalLM"]
+        old = [f for f in run(m, rt=runtimes.load_sglang("0.4.5"))["findings"] if f["check"] == "architecture"][0]
+        self.assertEqual(old["level"], "fail")
+        self.assertIn("starts in 0.4.6", old["message"])
+
+    def test_sglang_before_fallback_fails_unknown(self):
+        m = copy.deepcopy(MODEL)
+        m["config"]["architectures"] = ["NotARealModel"]
+        self.assertEqual(levels(run(m, rt=runtimes.load_sglang("0.4.5")), "architecture"), ["fail"])
+        self.assertEqual(levels(run(m, rt=runtimes.load_sglang("0.5.23")), "architecture"), ["warn"])
+
+    def test_support_ranges(self):
+        s = runtimes.support("QWenLMHeadModel")
+        self.assertEqual(s["vLLM"]["seen"]["last"], "0.23.0")
+        self.assertEqual(runtimes.support("Qwen3ForCausalLM")["SGLang"]["seen"]["first"], "0.4.6")
+
+    def test_sglang_unknown_release(self):
+        with self.assertRaises(runtimes.RuntimeSpecError):
+            runtimes.load_sglang("9.9.9")
 
     def test_unknown_gpu(self):
         with self.assertRaises(KeyError):
