@@ -98,14 +98,19 @@ def parse_registry(source):
 
 
 def parse_quant_methods(source):
-    for node in ast.walk(ast.parse(source)):
-        if (
-            isinstance(node, ast.Assign)
-            and isinstance(node.targets[0], ast.Name)
-            and node.targets[0].id == "QuantizationMethods"
-            and isinstance(node.value, ast.Subscript)
-        ):
-            sl = node.value.slice
-            elts = sl.elts if isinstance(sl, ast.Tuple) else [sl]
-            return {e.value for e in elts if isinstance(e, ast.Constant)}
-    raise RuntimeSourceError("quantization layout not recognised: no QuantizationMethods")
+    """Method names from the Literal (newer releases) or the plain list (older ones)."""
+    for node in ast.parse(source).body:
+        if isinstance(node, ast.Assign):
+            target, value = node.targets[0], node.value
+        elif isinstance(node, ast.AnnAssign):
+            target, value = node.target, node.value
+        else:
+            continue
+        name = getattr(target, "id", None)
+        if name == "QuantizationMethods" and isinstance(value, ast.Subscript):
+            value = value.slice
+        elif not (name == "QUANTIZATION_METHODS" and isinstance(value, ast.List)):
+            continue
+        elts = value.elts if isinstance(value, (ast.Tuple, ast.List)) else [value]
+        return {e.value for e in elts if isinstance(e, ast.Constant)}
+    raise RuntimeSourceError("quantization layout not recognised")

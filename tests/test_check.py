@@ -31,6 +31,10 @@ class ParseTest(unittest.TestCase):
         self.assertIn("compressed-tensors", METHODS)
         self.assertIn("awq", METHODS)
 
+    def test_quant_methods_old_list_layout(self):
+        src = 'from typing import List\nQUANTIZATION_METHODS: List[str] = ["aqlm", "awq"]\n'
+        self.assertEqual(vllm.parse_quant_methods(src), {"aqlm", "awq"})
+
     def test_unknown_layout_is_an_error(self):
         with self.assertRaises(vllm.RuntimeSourceError):
             vllm.parse_registry("X = {}")
