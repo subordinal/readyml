@@ -44,10 +44,12 @@ def cmd_versions(args):
             seen = r["seen"]
             if not seen:
                 print(f"  {label:<7} no release from {r['oldest']} to {r['latest']} loads it natively")
-            elif seen["last"] == r["latest"]:
-                print(f"  {label:<7} {seen['first']} and later (checked up to {r['latest']})")
             else:
-                print(f"  {label:<7} {seen['first']} to {seen['last']}, then removed")
+                first = f"{seen['first']} or earlier" if seen["first"] == r["oldest"] else seen["first"]
+                if seen["last"] == r["latest"]:
+                    print(f"  {label:<7} {first} and later (checked up to {r['latest']})")
+                else:
+                    print(f"  {label:<7} {first} to {seen['last']}, then removed")
     return 0
 
 
