@@ -1,5 +1,5 @@
 """Static preflight: findings from model metadata, a runtime release and a GPU."""
-from . import vllm
+from . import known, vllm
 from .hub import weight_files
 from .runtimes import version_key
 
@@ -139,6 +139,23 @@ def check_context(info, config, gpu, gpu_count, max_model_len):
     return [finding(PASS, "context", f"KV cache for {length:,} tokens needs about {need / GIB:.1f} GiB; about {budget / GIB:.1f} GiB is left after weights, room for {fits:,} cached tokens ({basis})")]
 
 
+def check_known(info, rt, gpu, records=None):
+    out = []
+    for hit in known.match(known.load() if records is None else records, info, rt, gpu):
+        r = hit["record"]
+        parts = [r["cause"].rstrip(".") + "."]
+        if r.get("flags"):
+            parts.append(f"Applies with {', '.join(r['flags'])}.")
+        if not hit["version_confirmed"]:
+            parts.append(f"Reported on {(r.get('versions') or {}).get('affected') or 'an unstated version'}; not confirmed for {rt['version']}.")
+        if (r.get("versions") or {}).get("fixed_in"):
+            parts.append(f"Fixed in {r['versions']['fixed_in']}.")
+        if r.get("workaround"):
+            parts.append(f"Workaround: {r['workaround'].rstrip('.')}.")
+        out.append(finding(WARN, "known issue", " ".join(parts), r["url"]))
+    return out
+
+
 def check_artifact(info, pinned):
     out = []
     files = {s["rfilename"] for s in info.get("siblings", [])}
@@ -155,12 +172,13 @@ def check_artifact(info, pinned):
     return out
 
 
-def run(info, rt, gpu, gpu_count, pinned, config=None, max_model_len=None):
+def run(info, rt, gpu, gpu_count, pinned, config=None, max_model_len=None, records=None):
     findings = (
         check_architecture(info, rt)
         + check_quantization(info, rt, gpu)
         + check_memory(info, gpu, gpu_count)
         + check_context(info, config, gpu, gpu_count, max_model_len)
+        + check_known(info, rt, gpu, records)
         + check_artifact(info, pinned)
     )
     levels = {f["level"] for f in findings}

@@ -43,7 +43,7 @@ $ readyml versions --model Qwen/Qwen-7B-Chat
 Qwen/Qwen-7B-Chat  (QWenLMHeadModel)
 
   vLLM    0.6.3 or earlier to 0.23.0, then removed
-  SGLang  0.1.10 or earlier and later (checked up to 0.5.23)
+  SGLang  every indexed release (0.1.10 to 0.5.23)
 ```
 
 ## trace: where did startup time go?

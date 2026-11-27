@@ -23,6 +23,8 @@ def cmd_check(args):
         print(f"{result['verdict']}  {info['id']} on {rt['label']} {rt['version']}, {args.gpus} x {gpu['name']}\n")
         for f in result["findings"]:
             print(f"  {MARK[f['level']]}  {f['check']:<13} {f['message']}")
+            if f["check"] == "known issue":
+                print(f"        {'':<13} {f['source']}")
     return 1 if result["verdict"] == "NOT READY" else 0
 
 
@@ -46,7 +48,9 @@ def cmd_versions(args):
                 print(f"  {label:<7} no release from {r['oldest']} to {r['latest']} loads it natively")
             else:
                 first = f"{seen['first']} or earlier" if seen["first"] == r["oldest"] else seen["first"]
-                if seen["last"] == r["latest"]:
+                if seen["first"] == r["oldest"] and seen["last"] == r["latest"]:
+                    print(f"  {label:<7} every indexed release ({r['oldest']} to {r['latest']})")
+                elif seen["last"] == r["latest"]:
                     print(f"  {label:<7} {first} and later (checked up to {r['latest']})")
                 else:
                     print(f"  {label:<7} {first} to {seen['last']}, then removed")
