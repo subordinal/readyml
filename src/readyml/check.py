@@ -5,6 +5,7 @@ from .runtimes import version_key
 
 GIB = 1024**3
 PASS, WARN, FAIL, INFO = "pass", "warn", "fail", "info"
+KV_BUDGET = 0.9  # share of GPU memory assumed usable; vLLM's long-standing gpu_memory_utilization default
 TOKENIZER_FILES = {"tokenizer.json", "tokenizer.model", "vocab.json", "vocab.txt", "tokenizer_config.json"}
 
 
@@ -106,7 +107,36 @@ def check_memory(info, gpu, gpu_count):
         return [finding(FAIL, "memory", f"{size}: the weights alone do not fit")]
     if share > 0.9:
         return [finding(WARN, "memory", f"{size}: {share:.0%} used by weights, little left for the KV cache")]
-    return [finding(PASS, "memory", f"{size}: {share:.0%} used by weights. KV cache and context length are not estimated yet")]
+    return [finding(PASS, "memory", f"{size}: {share:.0%} used by weights")]
+
+
+def kv_bytes_per_token(config):
+    """KV cache bytes per token for a standard attention stack, or None when the config does not describe one."""
+    c = config if config.get("num_hidden_layers") else config.get("text_config") or {}
+    layers, heads, hidden = c.get("num_hidden_layers"), c.get("num_attention_heads"), c.get("hidden_size")
+    if not (layers and heads and hidden):
+        return None, None
+    kv_heads = c.get("num_key_value_heads") or heads
+    head_dim = c.get("head_dim") or hidden // heads
+    width = 4 if (c.get("torch_dtype") or config.get("torch_dtype")) == "float32" else 2
+    return 2 * layers * kv_heads * head_dim * width, c.get("max_position_embeddings")
+
+
+def check_context(info, config, gpu, gpu_count, max_model_len):
+    if not config:
+        return []
+    per_token, native_len = kv_bytes_per_token(config)
+    length = max_model_len or native_len
+    weights = sum(size for _, size in weight_files(info))
+    if not (per_token and length and weights):
+        return [finding(INFO, "context", "KV cache is not estimated: the config does not describe a standard attention stack")]
+    budget = gpu["vram_gib"] * gpu_count * GIB * KV_BUDGET - weights
+    need = length * per_token
+    fits = int(budget // per_token) if budget > 0 else 0
+    basis = f"estimate, {per_token / 1024:.0f} KiB per token, {KV_BUDGET:.0%} of GPU memory usable"
+    if need > budget:
+        return [finding(WARN, "context", f"one {length:,}-token sequence needs about {need / GIB:.1f} GiB of KV cache; about {max(budget, 0) / GIB:.1f} GiB is left after weights. Set --max-model-len to {fits:,} or less ({basis})")]
+    return [finding(PASS, "context", f"KV cache for {length:,} tokens needs about {need / GIB:.1f} GiB; about {budget / GIB:.1f} GiB is left after weights, room for {fits:,} cached tokens ({basis})")]
 
 
 def check_artifact(info, pinned):
@@ -125,11 +155,12 @@ def check_artifact(info, pinned):
     return out
 
 
-def run(info, rt, gpu, gpu_count, pinned):
+def run(info, rt, gpu, gpu_count, pinned, config=None, max_model_len=None):
     findings = (
         check_architecture(info, rt)
         + check_quantization(info, rt, gpu)
         + check_memory(info, gpu, gpu_count)
+        + check_context(info, config, gpu, gpu_count, max_model_len)
         + check_artifact(info, pinned)
     )
     levels = {f["level"] for f in findings}

@@ -130,6 +130,18 @@ class CheckTest(unittest.TestCase):
         with self.assertRaises(runtimes.RuntimeSpecError):
             runtimes.load_sglang("9.9.9")
 
+    def test_kv_cache_estimate(self):
+        config = {"num_hidden_layers": 32, "num_attention_heads": 32, "num_key_value_heads": 8, "hidden_size": 4096, "max_position_embeddings": 131072, "torch_dtype": "bfloat16"}
+        self.assertEqual(check.kv_bytes_per_token(config), (2 * 32 * 8 * 128 * 2, 131072))
+        t4 = check.run(MODEL, RT, gpus.lookup("t4"), 1, True, config)
+        self.assertEqual(levels(t4, "context"), ["warn"])
+        self.assertEqual(levels(check.run(MODEL, RT, gpus.lookup("t4"), 1, True, config, 8192), "context"), ["pass"])
+        self.assertEqual(levels(check.run(MODEL, RT, gpus.lookup("h100"), 1, True, config), "context"), ["pass"])
+
+    def test_kv_cache_skipped_without_attention_fields(self):
+        self.assertEqual(levels(check.run(MODEL, RT, gpus.lookup("t4"), 1, True, {"model_type": "x"}), "context"), ["info"])
+        self.assertEqual(levels(run(), "context"), [])
+
     def test_unknown_gpu(self):
         with self.assertRaises(KeyError):
             gpus.lookup("rtx-9999")

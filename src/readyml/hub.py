@@ -30,6 +30,20 @@ def fetch_model(model_id, revision=None, token=None):
         raise HubError(f"cannot reach the Hub: {e.reason}") from e
 
 
+def fetch_config(model_id, revision=None, token=None):
+    """The full config.json. The model API only returns a few of its fields."""
+    url = f"https://huggingface.co/{model_id}/resolve/{revision or 'main'}/config.json"
+    req = urllib.request.Request(url, headers={"User-Agent": "readyml"})
+    token = token or os.environ.get("HF_TOKEN")
+    if token:
+        req.add_header("Authorization", f"Bearer {token}")
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.load(resp)
+    except (urllib.error.URLError, ValueError):
+        return None
+
+
 def weight_files(info):
     """Weight files to load. Safetensors wins when a repo ships several formats."""
     files = [(s["rfilename"], s.get("size") or 0) for s in info.get("siblings", [])]

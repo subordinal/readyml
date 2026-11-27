@@ -11,10 +11,12 @@ def cmd_check(args):
     try:
         gpu = gpus.lookup(args.gpu)
         rt = runtimes.load(args.runtime)
-        info = hub.fetch_model(args.model.removeprefix("hf://"), args.revision)
+        model = args.model.removeprefix("hf://")
+        info = hub.fetch_model(model, args.revision)
     except (KeyError, hub.HubError, runtimes.RuntimeSpecError) as e:
         sys.exit(f"readyml: {e.args[0]}")
-    result = check.run(info, rt, gpu, args.gpus, pinned=bool(args.revision))
+    config = hub.fetch_config(model, args.revision)
+    result = check.run(info, rt, gpu, args.gpus, bool(args.revision), config, args.max_model_len)
     if args.json:
         print(json.dumps(result, indent=2))
     else:
@@ -65,6 +67,7 @@ def main(argv=None):
     c.add_argument("--runtime", required=True, help="vllm:<version> or sglang:<version>")
     c.add_argument("--gpu", required=True, help="GPU type, for example h100, a100-80, l4")
     c.add_argument("--gpus", type=int, default=1, help="number of GPUs (default 1)")
+    c.add_argument("--max-model-len", type=int, help="context length you will serve (default: the model's maximum)")
     c.add_argument("--json", action="store_true", help="print JSON")
     c.set_defaults(func=cmd_check)
     v = sub.add_parser("versions", help="list which vLLM and SGLang releases load a model's architecture natively")
