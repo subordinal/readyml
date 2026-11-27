@@ -1,0 +1,2481 @@
+{
+ "versions": [
+  "0.6.3",
+  "0.6.4",
+  "0.6.5",
+  "0.6.6",
+  "0.7.0",
+  "0.7.1",
+  "0.7.2",
+  "0.7.3",
+  "0.8.0",
+  "0.8.1",
+  "0.8.2",
+  "0.8.3",
+  "0.8.4",
+  "0.8.5",
+  "0.9.0",
+  "0.9.1",
+  "0.9.2",
+  "0.10.0",
+  "0.10.1",
+  "0.10.2",
+  "0.11.0",
+  "0.11.1",
+  "0.11.2",
+  "0.12.0",
+  "0.13.0",
+  "0.14.0",
+  "0.14.1",
+  "0.15.0",
+  "0.15.1",
+  "0.16.0",
+  "0.17.0",
+  "0.17.1",
+  "0.18.0",
+  "0.18.1",
+  "0.19.0",
+  "0.19.1",
+  "0.20.0",
+  "0.20.1",
+  "0.20.2",
+  "0.21.0",
+  "0.22.0",
+  "0.22.1",
+  "0.23.0",
+  "0.24.0",
+  "0.25.0",
+  "0.25.1",
+  "0.26.0",
+  "0.27.0",
+  "0.27.1",
+  "0.28.0",
+  "0.29.0",
+  "0.30.0",
+  "0.31.0",
+  "0.32.0",
+  "0.34.0"
+ ],
+ "skipped": [
+  "0.1.0",
+  "0.1.1",
+  "0.1.2",
+  "0.1.3",
+  "0.1.4",
+  "0.1.5",
+  "0.1.6",
+  "0.1.7",
+  "0.2.0",
+  "0.2.1",
+  "0.2.2",
+  "0.2.3",
+  "0.2.4",
+  "0.2.5",
+  "0.2.6",
+  "0.2.7",
+  "0.3.0",
+  "0.3.1",
+  "0.3.2",
+  "0.3.3",
+  "0.4.0",
+  "0.4.1",
+  "0.4.2",
+  "0.4.3",
+  "0.5.0",
+  "0.5.1",
+  "0.5.2",
+  "0.5.3",
+  "0.5.4",
+  "0.5.5",
+  "0.6.0",
+  "0.6.1",
+  "0.6.2"
+ ],
+ "native": {
+  "AXK1ForCausalLM": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "AfmoeForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "AliceAIForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Alpamayo2Super": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "ApertusForCausalLM": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "AquilaForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.24.0",
+   "count": 44
+  },
+  "AquilaModel": {
+   "first": "0.6.3",
+   "last": "0.24.0",
+   "count": 44
+  },
+  "ArceeForCausalLM": {
+   "first": "0.10.0",
+   "last": "0.31.0",
+   "count": 36
+  },
+  "ArcticForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.28.0",
+   "count": 50
+  },
+  "AriaForConditionalGeneration": {
+   "first": "0.6.5",
+   "last": "0.32.0",
+   "count": 52
+  },
+  "AudioFlamingo3ForConditionalGeneration": {
+   "first": "0.13.0",
+   "last": "0.34.0",
+   "count": 31
+  },
+  "AyaVisionForConditionalGeneration": {
+   "first": "0.8.3",
+   "last": "0.24.0",
+   "count": 33
+  },
+  "BagelForConditionalGeneration": {
+   "first": "0.13.0",
+   "last": "0.34.0",
+   "count": 31
+  },
+  "BaiChuanForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.24.0",
+   "count": 44
+  },
+  "BaichuanForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.24.0",
+   "count": 44
+  },
+  "BailingMoeForCausalLM": {
+   "first": "0.10.0",
+   "last": "0.34.0",
+   "count": 38
+  },
+  "BailingMoeV25MTPModel": {
+   "first": "0.25.0",
+   "last": "0.34.0",
+   "count": 11
+  },
+  "BailingMoeV2ForCausalLM": {
+   "first": "0.11.0",
+   "last": "0.34.0",
+   "count": 35
+  },
+  "BailingMoeV2_5ForCausalLM": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "BailingMoeV3ForCausalLM": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "BailingMoeV3MTPModel": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "BailingMoeV3VLForConditionalGeneration": {
+   "first": "0.30.0",
+   "last": "0.34.0",
+   "count": 4
+  },
+  "BambaForCausalLM": {
+   "first": "0.7.3",
+   "last": "0.23.0",
+   "count": 36
+  },
+  "BartForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.10.2",
+   "count": 20
+  },
+  "BartModel": {
+   "first": "0.6.3",
+   "last": "0.10.2",
+   "count": 20
+  },
+  "BeamForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "BeeForConditionalGeneration": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "BertForMaskedLM": {
+   "first": "0.26.0",
+   "last": "0.34.0",
+   "count": 9
+  },
+  "BertForSequenceClassification": {
+   "first": "0.6.5",
+   "last": "0.34.0",
+   "count": 53
+  },
+  "BertForTokenClassification": {
+   "first": "0.11.0",
+   "last": "0.34.0",
+   "count": 35
+  },
+  "BertModel": {
+   "first": "0.6.4",
+   "last": "0.34.0",
+   "count": 54
+  },
+  "BertSpladeSparseEmbeddingModel": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "BgeM3EmbeddingModel": {
+   "first": "0.15.0",
+   "last": "0.34.0",
+   "count": 28
+  },
+  "Blip2ForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "BloomForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "CLIPModel": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "CanaryForConditionalGeneration": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "ChameleonForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.28.0",
+   "count": 50
+  },
+  "ChatGLMForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 50
+  },
+  "ChatGLMModel": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Cheers": {
+   "first": "0.20.0",
+   "last": "0.28.0",
+   "count": 14
+  },
+  "CheersForConditionalGeneration": {
+   "first": "0.20.0",
+   "last": "0.28.0",
+   "count": 14
+  },
+  "ClefFlashForJointSchema": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "ClefOmniForJointSchema": {
+   "first": "0.32.0",
+   "last": "0.34.0",
+   "count": 2
+  },
+  "Cohere2ForCausalLM": {
+   "first": "0.6.5",
+   "last": "0.34.0",
+   "count": 53
+  },
+  "Cohere2MoeForCausalLM": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "Cohere2VisionForConditionalGeneration": {
+   "first": "0.10.1",
+   "last": "0.34.0",
+   "count": 37
+  },
+  "CohereAsrForConditionalGeneration": {
+   "first": "0.19.0",
+   "last": "0.34.0",
+   "count": 21
+  },
+  "CohereCompassForConditionalGeneration": {
+   "first": "0.30.0",
+   "last": "0.34.0",
+   "count": 4
+  },
+  "CohereForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "ColBERTJinaRobertaModel": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "ColBERTLfm2Model": {
+   "first": "0.19.0",
+   "last": "0.34.0",
+   "count": 21
+  },
+  "ColBERTModernBertModel": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "ColModernVBertForRetrieval": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "ColPaliForRetrieval": {
+   "first": "0.18.0",
+   "last": "0.34.0",
+   "count": 23
+  },
+  "ColQwen3": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "ColQwen3_5": {
+   "first": "0.19.0",
+   "last": "0.34.0",
+   "count": 21
+  },
+  "ColUltraVBertForRetrieval": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Cosmos3EdgeForConditionalGeneration": {
+   "first": "0.26.0",
+   "last": "0.34.0",
+   "count": 9
+  },
+  "Cosmos3ForConditionalGeneration": {
+   "first": "0.23.0",
+   "last": "0.34.0",
+   "count": 13
+  },
+  "CwmForCausalLM": {
+   "first": "0.11.0",
+   "last": "0.31.0",
+   "count": 33
+  },
+  "D3ForSequenceClassification": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "DFlash2BeamDraftModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "DFlash2DraftModel": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "DFlash2RicursiveDraftModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "DFlashDraftModel": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "DFlashLagunaForCausalLM": {
+   "first": "0.25.0",
+   "last": "0.34.0",
+   "count": 11
+  },
+  "DFlashMuseGlimmerAssistantModel": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "DFlashQwen3XPressModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "DSparkDraftModel": {
+   "first": "0.25.0",
+   "last": "0.34.0",
+   "count": 11
+  },
+  "DSparkMiniMaxDraftModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "DSparkV41DraftModel": {
+   "first": "0.30.0",
+   "last": "0.34.0",
+   "count": 4
+  },
+  "DbrxForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "DeciLMForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "DeepSeekMTPModel": {
+   "first": "0.7.3",
+   "last": "0.34.0",
+   "count": 48
+  },
+  "DeepSeekV4MTPModel": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "DeepseekForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "DeepseekOCR2ForCausalLM": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "DeepseekOCRForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "DeepseekV2ForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "DeepseekV32ForCausalLM": {
+   "first": "0.11.0",
+   "last": "0.34.0",
+   "count": 35
+  },
+  "DeepseekV32MTPModel": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "DeepseekV3BidirectionalModel": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "DeepseekV3ForCausalLM": {
+   "first": "0.6.6",
+   "last": "0.34.0",
+   "count": 52
+  },
+  "DeepseekV41ForCausalLM": {
+   "first": "0.30.0",
+   "last": "0.34.0",
+   "count": 4
+  },
+  "DeepseekV4ForCausalLM": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "DeepseekV4ForConditionalGeneration": {
+   "first": "0.30.0",
+   "last": "0.34.0",
+   "count": 4
+  },
+  "DeepseekVLV2ForCausalLM": {
+   "first": "0.7.0",
+   "last": "0.34.0",
+   "count": 51
+  },
+  "DiffusionGemmaForBlockDiffusion": {
+   "first": "0.24.0",
+   "last": "0.34.0",
+   "count": 12
+  },
+  "DomynEdgeForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "DonutForConditionalGeneration": {
+   "first": "0.10.2",
+   "last": "0.10.2",
+   "count": 1
+  },
+  "DoryForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Dots1ForCausalLM": {
+   "first": "0.9.2",
+   "last": "0.23.0",
+   "count": 27
+  },
+  "Dots3NoteForCausalLM": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "Dots3NoteMTPModel": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "DotsOCRForCausalLM": {
+   "first": "0.11.0",
+   "last": "0.34.0",
+   "count": 35
+  },
+  "EAGLEModel": {
+   "first": "0.6.3",
+   "last": "0.9.2",
+   "count": 17
+  },
+  "Eagle2_5_VLForConditionalGeneration": {
+   "first": "0.15.0",
+   "last": "0.34.0",
+   "count": 28
+  },
+  "Eagle3DeepseekV2ForCausalLM": {
+   "first": "0.18.0",
+   "last": "0.34.0",
+   "count": 23
+  },
+  "Eagle3DeepseekV3ForCausalLM": {
+   "first": "0.18.0",
+   "last": "0.34.0",
+   "count": 23
+  },
+  "Eagle3LlamaForCausalLM": {
+   "first": "0.8.5",
+   "last": "0.34.0",
+   "count": 42
+  },
+  "Eagle3MiniMaxM2ForCausalLM": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "Eagle3Qwen2_5vlForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "Eagle3Qwen3ForCausalLM": {
+   "first": "0.24.0",
+   "last": "0.34.0",
+   "count": 12
+  },
+  "Eagle3Qwen3vlForCausalLM": {
+   "first": "0.12.0",
+   "last": "0.34.0",
+   "count": 32
+  },
+  "EagleCohereForCausalLM": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "EagleDeepSeekMTPModel": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "EagleLlama4ForCausalLM": {
+   "first": "0.10.0",
+   "last": "0.34.0",
+   "count": 38
+  },
+  "EagleLlamaForCausalLM": {
+   "first": "0.8.4",
+   "last": "0.34.0",
+   "count": 43
+  },
+  "EagleMiniCPMForCausalLM": {
+   "first": "0.9.1",
+   "last": "0.34.0",
+   "count": 40
+  },
+  "EagleMistralForCausalLM": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "EagleMistralLarge3ForCausalLM": {
+   "first": "0.12.0",
+   "last": "0.34.0",
+   "count": 32
+  },
+  "EmbeddingGemma2Model": {
+   "first": "0.32.0",
+   "last": "0.34.0",
+   "count": 2
+  },
+  "Ernie4_5ForCausalLM": {
+   "first": "0.10.1",
+   "last": "0.34.0",
+   "count": 37
+  },
+  "Ernie4_5_ForCausalLM": {
+   "first": "0.9.2",
+   "last": "0.10.0",
+   "count": 2
+  },
+  "Ernie4_5_MoeForCausalLM": {
+   "first": "0.9.2",
+   "last": "0.34.0",
+   "count": 39
+  },
+  "Ernie4_5_VLMoeForConditionalGeneration": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "ErnieForSequenceClassification": {
+   "first": "0.18.0",
+   "last": "0.23.0",
+   "count": 11
+  },
+  "ErnieForTokenClassification": {
+   "first": "0.18.0",
+   "last": "0.23.0",
+   "count": 11
+  },
+  "ErnieMTPModel": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "ErnieModel": {
+   "first": "0.18.0",
+   "last": "0.23.0",
+   "count": 11
+  },
+  "Exaone4ForCausalLM": {
+   "first": "0.10.0",
+   "last": "0.34.0",
+   "count": 38
+  },
+  "Exaone4_5_ForConditionalGeneration": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "Exaone4_5_MTP": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "ExaoneForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "ExaoneMoEForCausalLM": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 24
+  },
+  "ExaoneMoeForCausalLM": {
+   "first": "0.27.0",
+   "last": "0.34.0",
+   "count": 8
+  },
+  "ExaoneMoeMTP": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "ExtractHiddenStatesModel": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "Fairseq2LlamaForCausalLM": {
+   "first": "0.7.0",
+   "last": "0.28.0",
+   "count": 46
+  },
+  "FalconForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "FalconH1ForCausalLM": {
+   "first": "0.9.0",
+   "last": "0.34.0",
+   "count": 41
+  },
+  "FalconMambaForCausalLM": {
+   "first": "0.6.4",
+   "last": "0.34.0",
+   "count": 54
+  },
+  "FireRedASR2ForConditionalGeneration": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "FireRedLIDForConditionalGeneration": {
+   "first": "0.20.0",
+   "last": "0.28.0",
+   "count": 14
+  },
+  "FlexOlmoForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.28.0",
+   "count": 29
+  },
+  "FlintForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Florence2ForConditionalGeneration": {
+   "first": "0.6.4",
+   "last": "0.10.2",
+   "count": 19
+  },
+  "FunASRForConditionalGeneration": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "FunAudioChatForConditionalGeneration": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "FuyuForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.25.1",
+   "count": 46
+  },
+  "GLM4VForCausalLM": {
+   "first": "0.7.3",
+   "last": "0.34.0",
+   "count": 48
+  },
+  "GPT2ForSequenceClassification": {
+   "first": "0.9.2",
+   "last": "0.34.0",
+   "count": 39
+  },
+  "GPT2LMHeadModel": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "GPTBigCodeForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.24.0",
+   "count": 44
+  },
+  "GPTJForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "GPTNeoXForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.31.0",
+   "count": 53
+  },
+  "Gemma2ForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Gemma2Model": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Gemma3ForCausalLM": {
+   "first": "0.8.0",
+   "last": "0.34.0",
+   "count": 47
+  },
+  "Gemma3ForConditionalGeneration": {
+   "first": "0.8.0",
+   "last": "0.34.0",
+   "count": 47
+  },
+  "Gemma3TextModel": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "Gemma3nForCausalLM": {
+   "first": "0.10.1",
+   "last": "0.34.0",
+   "count": 37
+  },
+  "Gemma3nForConditionalGeneration": {
+   "first": "0.9.2",
+   "last": "0.34.0",
+   "count": 39
+  },
+  "Gemma4DSparkModel": {
+   "first": "0.26.0",
+   "last": "0.34.0",
+   "count": 9
+  },
+  "Gemma4ForCausalLM": {
+   "first": "0.19.0",
+   "last": "0.34.0",
+   "count": 21
+  },
+  "Gemma4ForConditionalGeneration": {
+   "first": "0.19.0",
+   "last": "0.34.0",
+   "count": 21
+  },
+  "Gemma4MTPModel": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "Gemma4UnifiedForConditionalGeneration": {
+   "first": "0.23.0",
+   "last": "0.34.0",
+   "count": 13
+  },
+  "GemmaForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.32.0",
+   "count": 54
+  },
+  "Glm4ForCausalLM": {
+   "first": "0.8.4",
+   "last": "0.34.0",
+   "count": 43
+  },
+  "Glm4MoeForCausalLM": {
+   "first": "0.10.0",
+   "last": "0.34.0",
+   "count": 38
+  },
+  "Glm4MoeLiteForCausalLM": {
+   "first": "0.15.0",
+   "last": "0.34.0",
+   "count": 28
+  },
+  "Glm4MoeLiteMTPModel": {
+   "first": "0.15.0",
+   "last": "0.34.0",
+   "count": 28
+  },
+  "Glm4MoeMTPModel": {
+   "first": "0.10.0",
+   "last": "0.34.0",
+   "count": 38
+  },
+  "Glm4vForConditionalGeneration": {
+   "first": "0.9.2",
+   "last": "0.34.0",
+   "count": 39
+  },
+  "Glm4vMoeForConditionalGeneration": {
+   "first": "0.10.1",
+   "last": "0.34.0",
+   "count": 37
+  },
+  "Glm5NextForCausalLM": {
+   "first": "0.30.0",
+   "last": "0.34.0",
+   "count": 4
+  },
+  "Glm5NextForConditionalGeneration": {
+   "first": "0.30.0",
+   "last": "0.34.0",
+   "count": 4
+  },
+  "Glm5NextMTPModel": {
+   "first": "0.30.0",
+   "last": "0.34.0",
+   "count": 4
+  },
+  "GlmAsrForConditionalGeneration": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "GlmForCausalLM": {
+   "first": "0.6.5",
+   "last": "0.31.0",
+   "count": 51
+  },
+  "GlmMoeDsaForCausalLM": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "GlmOcrForConditionalGeneration": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "GlmOcrMTPModel": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "GptOssForCausalLM": {
+   "first": "0.10.1",
+   "last": "0.34.0",
+   "count": 37
+  },
+  "Granite4VisionForConditionalGeneration": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "GraniteForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "GraniteMoeForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "GraniteMoeHybridForCausalLM": {
+   "first": "0.9.0",
+   "last": "0.34.0",
+   "count": 41
+  },
+  "GraniteMoeSWAForCausalLM": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "GraniteMoeSharedForCausalLM": {
+   "first": "0.8.0",
+   "last": "0.34.0",
+   "count": 47
+  },
+  "GraniteSWAForCausalLM": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "GraniteSpeechForConditionalGeneration": {
+   "first": "0.8.5",
+   "last": "0.34.0",
+   "count": 42
+  },
+  "GraniteSpeechPlusForConditionalGeneration": {
+   "first": "0.23.0",
+   "last": "0.34.0",
+   "count": 13
+  },
+  "GritLM": {
+   "first": "0.6.5",
+   "last": "0.28.0",
+   "count": 48
+  },
+  "Grok1ForCausalLM": {
+   "first": "0.14.0",
+   "last": "0.24.0",
+   "count": 19
+  },
+  "Grok1ModelForCausalLM": {
+   "first": "0.8.0",
+   "last": "0.24.0",
+   "count": 36
+  },
+  "GteModel": {
+   "first": "0.8.5",
+   "last": "0.34.0",
+   "count": 42
+  },
+  "GteNewForSequenceClassification": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "GteNewModel": {
+   "first": "0.9.0",
+   "last": "0.34.0",
+   "count": 41
+  },
+  "H2OVLChatModel": {
+   "first": "0.6.4",
+   "last": "0.34.0",
+   "count": 54
+  },
+  "HCXVisionForCausalLM": {
+   "first": "0.10.1",
+   "last": "0.28.0",
+   "count": 32
+  },
+  "HCXVisionV2ForCausalLM": {
+   "first": "0.18.0",
+   "last": "0.34.0",
+   "count": 23
+  },
+  "HF_ColBERT": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "HYV3ForCausalLM": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "HYV3MTPModel": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "HYV4ForCausalLM": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "HYV4MTPModel": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "HfMoondream": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "HrmTextForCausalLM": {
+   "first": "0.24.0",
+   "last": "0.34.0",
+   "count": 12
+  },
+  "HunYuanDenseV1ForCausalLM": {
+   "first": "0.10.0",
+   "last": "0.28.0",
+   "count": 33
+  },
+  "HunYuanMoEV1ForCausalLM": {
+   "first": "0.9.2",
+   "last": "0.28.0",
+   "count": 34
+  },
+  "HunYuanVLForConditionalGeneration": {
+   "first": "0.12.0",
+   "last": "0.28.0",
+   "count": 27
+  },
+  "HyperCLOVAXForCausalLM": {
+   "first": "0.18.0",
+   "last": "0.34.0",
+   "count": 23
+  },
+  "IQuestCoderForCausalLM": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "IQuestLoopCoderForCausalLM": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "Idefics3ForConditionalGeneration": {
+   "first": "0.6.4",
+   "last": "0.34.0",
+   "count": 54
+  },
+  "InklingForCausalLM": {
+   "first": "0.26.0",
+   "last": "0.34.0",
+   "count": 9
+  },
+  "InklingForConditionalGeneration": {
+   "first": "0.26.0",
+   "last": "0.34.0",
+   "count": 9
+  },
+  "InklingMTPModel": {
+   "first": "0.26.0",
+   "last": "0.34.0",
+   "count": 9
+  },
+  "InternLM2ForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "InternLM2ForRewardModel": {
+   "first": "0.7.0",
+   "last": "0.34.0",
+   "count": 51
+  },
+  "InternLM2VEForCausalLM": {
+   "first": "0.6.4",
+   "last": "0.23.0",
+   "count": 42
+  },
+  "InternLM3ForCausalLM": {
+   "first": "0.7.0",
+   "last": "0.34.0",
+   "count": 51
+  },
+  "InternLMForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.23.0",
+   "count": 43
+  },
+  "InternS1ForConditionalGeneration": {
+   "first": "0.10.1",
+   "last": "0.34.0",
+   "count": 37
+  },
+  "InternS1ProForConditionalGeneration": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "InternS2MobiusForConditionalGeneration": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "InternS2MobiusMTP": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "InternS2PreviewForConditionalGeneration": {
+   "first": "0.22.0",
+   "last": "0.34.0",
+   "count": 15
+  },
+  "InternVLChatModel": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "InternVLForConditionalGeneration": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "IsaacForConditionalGeneration": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "JAISLMHeadModel": {
+   "first": "0.6.3",
+   "last": "0.22.1",
+   "count": 42
+  },
+  "Jais2ForCausalLM": {
+   "first": "0.13.0",
+   "last": "0.31.0",
+   "count": 29
+  },
+  "JambaForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "JambaForSequenceClassification": {
+   "first": "0.6.6",
+   "last": "0.34.0",
+   "count": 52
+  },
+  "JinaEmbeddingsV5Model": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "JinaForRanking": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "JinaVLForRanking": {
+   "first": "0.10.0",
+   "last": "0.34.0",
+   "count": 38
+  },
+  "K2HorizonForCausalLM": {
+   "first": "0.30.0",
+   "last": "0.34.0",
+   "count": 4
+  },
+  "K3DSparkModel": {
+   "first": "0.27.0",
+   "last": "0.34.0",
+   "count": 8
+  },
+  "KananaVForConditionalGeneration": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "KeyeForConditionalGeneration": {
+   "first": "0.9.2",
+   "last": "0.32.0",
+   "count": 38
+  },
+  "KeyeVL1_5ForConditionalGeneration": {
+   "first": "0.10.2",
+   "last": "0.32.0",
+   "count": 35
+  },
+  "KimiK25ForConditionalGeneration": {
+   "first": "0.15.0",
+   "last": "0.34.0",
+   "count": 28
+  },
+  "KimiK31ForConditionalGeneration": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "KimiK3ForConditionalGeneration": {
+   "first": "0.27.0",
+   "last": "0.34.0",
+   "count": 8
+  },
+  "KimiK3MTPModel": {
+   "first": "0.27.0",
+   "last": "0.34.0",
+   "count": 8
+  },
+  "KimiLinearForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "KimiVLForConditionalGeneration": {
+   "first": "0.8.5",
+   "last": "0.34.0",
+   "count": 42
+  },
+  "LLaMAForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "LagunaForCausalLM": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "Lfm2BidirectionalModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Lfm2ForCausalLM": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "Lfm2MoeForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "Lfm2VlForConditionalGeneration": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "Lfm3AudioForConditionalGeneration": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Lfm3ForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Lfm3VlForConditionalGeneration": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "LiLiCorrDraftModel": {
+   "first": "0.31.0",
+   "last": "0.34.0",
+   "count": 3
+  },
+  "LightOnOCRForConditionalGeneration": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "Llama4ForCausalLM": {
+   "first": "0.8.3",
+   "last": "0.34.0",
+   "count": 38
+  },
+  "Llama4ForConditionalGeneration": {
+   "first": "0.8.3",
+   "last": "0.34.0",
+   "count": 44
+  },
+  "LlamaBidirectionalForSequenceClassification": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "LlamaBidirectionalModel": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "LlamaForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "LlamaForCausalLMEagle3": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "LlamaModel": {
+   "first": "0.6.4",
+   "last": "0.34.0",
+   "count": 54
+  },
+  "LlamaNemotronVLForSequenceClassification": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "LlamaNemotronVLModel": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "Llama_Nemotron_Nano_VL": {
+   "first": "0.10.0",
+   "last": "0.34.0",
+   "count": 38
+  },
+  "LlavaForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "LlavaNextForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "LlavaNextVideoForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "LlavaOnevision2ForConditionalGeneration": {
+   "first": "0.25.0",
+   "last": "0.34.0",
+   "count": 11
+  },
+  "LlavaOnevisionForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "LongCatFlashMTPModel": {
+   "first": "0.11.0",
+   "last": "0.34.0",
+   "count": 35
+  },
+  "LongcatFlashForCausalLM": {
+   "first": "0.11.0",
+   "last": "0.34.0",
+   "count": 35
+  },
+  "LongcatFlashNgramForCausalLM": {
+   "first": "0.26.0",
+   "last": "0.34.0",
+   "count": 9
+  },
+  "MBartForConditionalGeneration": {
+   "first": "0.10.1",
+   "last": "0.10.2",
+   "count": 2
+  },
+  "MLPSpeculatorPreTrainedModel": {
+   "first": "0.6.3",
+   "last": "0.9.2",
+   "count": 17
+  },
+  "MPTForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.28.0",
+   "count": 50
+  },
+  "Mamba2ForCausalLM": {
+   "first": "0.7.3",
+   "last": "0.34.0",
+   "count": 48
+  },
+  "MambaForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "MantisForConditionalGeneration": {
+   "first": "0.6.5",
+   "last": "0.24.0",
+   "count": 42
+  },
+  "MedusaModel": {
+   "first": "0.6.3",
+   "last": "0.32.0",
+   "count": 54
+  },
+  "MellumForCausalLM": {
+   "first": "0.22.1",
+   "last": "0.31.0",
+   "count": 12
+  },
+  "MiDashengLMModel": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "MiMoForCausalLM": {
+   "first": "0.9.0",
+   "last": "0.34.0",
+   "count": 41
+  },
+  "MiMoMTPModel": {
+   "first": "0.9.0",
+   "last": "0.34.0",
+   "count": 41
+  },
+  "MiMoV2FlashForCausalLM": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "MiMoV2ForCausalLM": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "MiMoV2MTPModel": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "MiMoV2OmniForCausalLM": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "MiMoV2OmniMTPModel": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "MingV3ASRForConditionalGeneration": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "MiniCPM3ForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "MiniCPMForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "MiniCPMO": {
+   "first": "0.7.1",
+   "last": "0.34.0",
+   "count": 50
+  },
+  "MiniCPMOcrForConditionalGeneration": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "MiniCPMV": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "MiniCPMV4_6ForConditionalGeneration": {
+   "first": "0.22.0",
+   "last": "0.34.0",
+   "count": 15
+  },
+  "MiniCPMV4_7ForConditionalGeneration": {
+   "first": "0.32.0",
+   "last": "0.34.0",
+   "count": 2
+  },
+  "MiniMaxForCausalLM": {
+   "first": "0.10.0",
+   "last": "0.23.0",
+   "count": 26
+  },
+  "MiniMaxM1ForCausalLM": {
+   "first": "0.9.2",
+   "last": "0.23.0",
+   "count": 27
+  },
+  "MiniMaxM2ForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "MiniMaxM3MTP": {
+   "first": "0.24.0",
+   "last": "0.34.0",
+   "count": 12
+  },
+  "MiniMaxM3SparseForCausalLM": {
+   "first": "0.24.0",
+   "last": "0.34.0",
+   "count": 12
+  },
+  "MiniMaxM3SparseForConditionalGeneration": {
+   "first": "0.24.0",
+   "last": "0.34.0",
+   "count": 12
+  },
+  "MiniMaxText01ForCausalLM": {
+   "first": "0.8.3",
+   "last": "0.23.0",
+   "count": 32
+  },
+  "MiniMaxVL01ForConditionalGeneration": {
+   "first": "0.9.0",
+   "last": "0.23.0",
+   "count": 29
+  },
+  "Ministral3ForCausalLM": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "Mistral3ForConditionalGeneration": {
+   "first": "0.8.3",
+   "last": "0.34.0",
+   "count": 44
+  },
+  "MistralForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "MistralLarge3ForCausalLM": {
+   "first": "0.12.0",
+   "last": "0.34.0",
+   "count": 32
+  },
+  "MistralLarge4DSparkModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "MistralLarge4ForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "MistralModel": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "MixtralForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "MllamaForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.10.2",
+   "count": 20
+  },
+  "ModernBertForSequenceClassification": {
+   "first": "0.8.5",
+   "last": "0.34.0",
+   "count": 42
+  },
+  "ModernBertForTokenClassification": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "ModernBertModel": {
+   "first": "0.9.0",
+   "last": "0.34.0",
+   "count": 41
+  },
+  "ModernVBertModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Molmo2ForConditionalGeneration": {
+   "first": "0.15.0",
+   "last": "0.34.0",
+   "count": 28
+  },
+  "MolmoForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Moondream3ForCausalLM": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "MoonshotKimiaForCausalLM": {
+   "first": "0.18.0",
+   "last": "0.34.0",
+   "count": 23
+  },
+  "MossAudioModel": {
+   "first": "0.24.0",
+   "last": "0.34.0",
+   "count": 12
+  },
+  "MossTranscribeDiarizeForConditionalGeneration": {
+   "first": "0.25.0",
+   "last": "0.34.0",
+   "count": 11
+  },
+  "MotifForCausalLM": {
+   "first": "0.10.2",
+   "last": "0.11.0",
+   "count": 2
+  },
+  "MptForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.28.0",
+   "count": 50
+  },
+  "MuseGlimmerAssistantModel": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "MuseGlimmerForCausalLM": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "MuseGlimmerForConditionalGeneration": {
+   "first": "0.28.0",
+   "last": "0.34.0",
+   "count": 6
+  },
+  "MuseSparkDSparkModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "MuseSparkForConditionalGeneration": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "MusicFlamingoForConditionalGeneration": {
+   "first": "0.16.0",
+   "last": "0.24.0",
+   "count": 15
+  },
+  "NVLM_D": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Nemotron3_5TranscribeForConditionalGeneration": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Nemotron3_5TranscribeMTPModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "NemotronForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "NemotronHForCausalLM": {
+   "first": "0.9.1",
+   "last": "0.34.0",
+   "count": 40
+  },
+  "NemotronHMTPModel": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "NemotronHPuzzleForCausalLM": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "NemotronH_Nano_Omni_Reasoning_V3": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "NemotronH_Nano_VL": {
+   "first": "0.10.2",
+   "last": "0.10.2",
+   "count": 1
+  },
+  "NemotronH_Nano_VL_V2": {
+   "first": "0.11.0",
+   "last": "0.34.0",
+   "count": 35
+  },
+  "NemotronH_Omni_Reasoning_V3": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "NemotronH_Super_Omni_Reasoning_V3": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "NemotronParseForConditionalGeneration": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "NomicBertModel": {
+   "first": "0.8.5",
+   "last": "0.34.0",
+   "count": 42
+  },
+  "OPTForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Olmo2ForCausalLM": {
+   "first": "0.6.5",
+   "last": "0.25.1",
+   "count": 44
+  },
+  "Olmo3ForCausalLM": {
+   "first": "0.11.0",
+   "last": "0.28.0",
+   "count": 30
+  },
+  "OlmoForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.25.1",
+   "count": 46
+  },
+  "OlmoHybridForCausalLM": {
+   "first": "0.18.0",
+   "last": "0.34.0",
+   "count": 23
+  },
+  "OlmoeForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.32.0",
+   "count": 54
+  },
+  "OpenAIPrivacyFilterForTokenClassification": {
+   "first": "0.25.0",
+   "last": "0.34.0",
+   "count": 11
+  },
+  "OpenCUAForConditionalGeneration": {
+   "first": "0.12.0",
+   "last": "0.34.0",
+   "count": 32
+  },
+  "OpenPanguMTPModel": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "OpenPanguVLForConditionalGeneration": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "OpenVLAForActionPrediction": {
+   "first": "0.22.0",
+   "last": "0.34.0",
+   "count": 15
+  },
+  "OpsColQwen3Model": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "OrionForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "OuroForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.26.0",
+   "count": 26
+  },
+  "Ovis": {
+   "first": "0.9.0",
+   "last": "0.34.0",
+   "count": 41
+  },
+  "Ovis2_5": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "Ovis2_6ForCausalLM": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "Ovis2_6_MoeForCausalLM": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "PEagleDraftModel": {
+   "first": "0.22.0",
+   "last": "0.32.0",
+   "count": 14
+  },
+  "PaddleOCRVLForConditionalGeneration": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "PaliGemmaForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "PanguEmbeddedForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "PanguProMoEV2ForCausalLM": {
+   "first": "0.14.0",
+   "last": "0.34.0",
+   "count": 30
+  },
+  "PanguUltraMoEForCausalLM": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "Param2MoEForCausalLM": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "ParseAuxMTPModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "PeagleLlamaForCausalLM": {
+   "first": "0.22.0",
+   "last": "0.32.0",
+   "count": 14
+  },
+  "PeagleQwen3ForCausalLM": {
+   "first": "0.24.0",
+   "last": "0.32.0",
+   "count": 11
+  },
+  "PersimmonForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.25.1",
+   "count": 46
+  },
+  "Phi3ForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Phi3SmallForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.9.2",
+   "count": 17
+  },
+  "Phi3VForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Phi4FlashForCausalLM": {
+   "first": "0.10.0",
+   "last": "0.10.2",
+   "count": 3
+  },
+  "Phi4ForCausalLMV": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "Phi4MMForCausalLM": {
+   "first": "0.8.0",
+   "last": "0.34.0",
+   "count": 47
+  },
+  "Phi4MultimodalForCausalLM": {
+   "first": "0.10.1",
+   "last": "0.12.0",
+   "count": 6
+  },
+  "PhiForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.31.0",
+   "count": 53
+  },
+  "PhiMoEForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "PixtralForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Plamo2ForCausalLM": {
+   "first": "0.8.5",
+   "last": "0.26.0",
+   "count": 34
+  },
+  "Plamo3ForCausalLM": {
+   "first": "0.12.0",
+   "last": "0.34.0",
+   "count": 32
+  },
+  "PrithviGeoSpatialMAE": {
+   "first": "0.7.3",
+   "last": "0.28.0",
+   "count": 43
+  },
+  "QWenLMHeadModel": {
+   "first": "0.6.3",
+   "last": "0.23.0",
+   "count": 43
+  },
+  "QianfanOCRForConditionalGeneration": {
+   "first": "0.21.0",
+   "last": "0.34.0",
+   "count": 16
+  },
+  "QuantMixtralForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.10.1",
+   "count": 19
+  },
+  "Qwen2AudioForConditionalGeneration": {
+   "first": "0.6.4",
+   "last": "0.34.0",
+   "count": 54
+  },
+  "Qwen2ForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Qwen2ForProcessRewardModel": {
+   "first": "0.7.0",
+   "last": "0.34.0",
+   "count": 51
+  },
+  "Qwen2ForRewardModel": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Qwen2ForSequenceClassification": {
+   "first": "0.6.4",
+   "last": "0.9.2",
+   "count": 16
+  },
+  "Qwen2Model": {
+   "first": "0.6.4",
+   "last": "0.34.0",
+   "count": 54
+  },
+  "Qwen2MoeForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Qwen2VLForConditionalGeneration": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "Qwen2_5OmniForConditionalGeneration": {
+   "first": "0.9.0",
+   "last": "0.34.0",
+   "count": 41
+  },
+  "Qwen2_5OmniModel": {
+   "first": "0.8.5",
+   "last": "0.34.0",
+   "count": 42
+  },
+  "Qwen2_5_VLForConditionalGeneration": {
+   "first": "0.7.2",
+   "last": "0.34.0",
+   "count": 49
+  },
+  "Qwen3ASRForConditionalGeneration": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "Qwen3ASRForcedAlignerForTokenClassification": {
+   "first": "0.19.0",
+   "last": "0.34.0",
+   "count": 21
+  },
+  "Qwen3ASRRealtimeGeneration": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "Qwen3DSparkModel": {
+   "first": "0.25.0",
+   "last": "0.34.0",
+   "count": 11
+  },
+  "Qwen3ForCausalLM": {
+   "first": "0.8.4",
+   "last": "0.34.0",
+   "count": 43
+  },
+  "Qwen3ForSequenceClassification": {
+   "first": "0.9.2",
+   "last": "0.9.2",
+   "count": 1
+  },
+  "Qwen3MoeForCausalLM": {
+   "first": "0.8.4",
+   "last": "0.34.0",
+   "count": 43
+  },
+  "Qwen3NextForCausalLM": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "Qwen3NextMTP": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "Qwen3OmniDSparkModel": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "Qwen3OmniMoeForConditionalGeneration": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "Qwen3VLForConditionalGeneration": {
+   "first": "0.11.0",
+   "last": "0.34.0",
+   "count": 35
+  },
+  "Qwen3VLMoeForConditionalGeneration": {
+   "first": "0.11.0",
+   "last": "0.34.0",
+   "count": 35
+  },
+  "Qwen3VLNemotronEmbedModel": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "Qwen3XPressModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Qwen3_5ForCausalLM": {
+   "first": "0.27.0",
+   "last": "0.34.0",
+   "count": 8
+  },
+  "Qwen3_5ForConditionalGeneration": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "Qwen3_5MTP": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "Qwen3_5MoeForCausalLM": {
+   "first": "0.27.0",
+   "last": "0.34.0",
+   "count": 8
+  },
+  "Qwen3_5MoeForConditionalGeneration": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "Qwen3_5MoeMTP": {
+   "first": "0.17.0",
+   "last": "0.34.0",
+   "count": 25
+  },
+  "Qwen4ExpForCausalLM": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "Qwen4ExpForConditionalGeneration": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "Qwen4ExpMTP": {
+   "first": "0.29.0",
+   "last": "0.34.0",
+   "count": 5
+  },
+  "QwenVLForConditionalGeneration": {
+   "first": "0.7.3",
+   "last": "0.23.0",
+   "count": 36
+  },
+  "RForConditionalGeneration": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "RWForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.28.0",
+   "count": 50
+  },
+  "RadioMBartPrefixForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "RicursiveForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Rnj1ForCausalLM": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "RobertaForMaskedLM": {
+   "first": "0.6.5",
+   "last": "0.34.0",
+   "count": 53
+  },
+  "RobertaForSequenceClassification": {
+   "first": "0.6.5",
+   "last": "0.34.0",
+   "count": 53
+  },
+  "RobertaForTokenClassification": {
+   "first": "0.26.0",
+   "last": "0.34.0",
+   "count": 9
+  },
+  "RobertaModel": {
+   "first": "0.6.4",
+   "last": "0.34.0",
+   "count": 54
+  },
+  "SarvamMLAForCausalLM": {
+   "first": "0.18.0",
+   "last": "0.34.0",
+   "count": 23
+  },
+  "SarvamMoEForCausalLM": {
+   "first": "0.18.0",
+   "last": "0.34.0",
+   "count": 23
+  },
+  "SeedOssForCausalLM": {
+   "first": "0.10.2",
+   "last": "0.31.0",
+   "count": 34
+  },
+  "SiglipModel": {
+   "first": "0.11.1",
+   "last": "0.34.0",
+   "count": 34
+  },
+  "SkyworkR1VChatModel": {
+   "first": "0.8.3",
+   "last": "0.34.0",
+   "count": 44
+  },
+  "SmolVLMForConditionalGeneration": {
+   "first": "0.8.4",
+   "last": "0.34.0",
+   "count": 43
+  },
+  "SolarForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "StableLMEpochForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.28.0",
+   "count": 50
+  },
+  "StableLmForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.32.0",
+   "count": 54
+  },
+  "Starcoder2ForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.24.0",
+   "count": 44
+  },
+  "Step1ForCausalLM": {
+   "first": "0.15.0",
+   "last": "0.34.0",
+   "count": 28
+  },
+  "Step3TextForCausalLM": {
+   "first": "0.10.1",
+   "last": "0.34.0",
+   "count": 37
+  },
+  "Step3VLForConditionalGeneration": {
+   "first": "0.10.1",
+   "last": "0.34.0",
+   "count": 37
+  },
+  "Step3p5ForCausalLM": {
+   "first": "0.15.1",
+   "last": "0.34.0",
+   "count": 27
+  },
+  "Step3p5MTP": {
+   "first": "0.15.1",
+   "last": "0.34.0",
+   "count": 27
+  },
+  "Step3p7ForConditionalGeneration": {
+   "first": "0.23.0",
+   "last": "0.34.0",
+   "count": 13
+  },
+  "Step5ForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Step5ForConditionalGeneration": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "Step5MTP": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "StepVLForConditionalGeneration": {
+   "first": "0.15.0",
+   "last": "0.34.0",
+   "count": 28
+  },
+  "Tarsier2ForConditionalGeneration": {
+   "first": "0.9.2",
+   "last": "0.24.0",
+   "count": 28
+  },
+  "TarsierForConditionalGeneration": {
+   "first": "0.9.1",
+   "last": "0.24.0",
+   "count": 29
+  },
+  "TeleChat2ForCausalLM": {
+   "first": "0.6.5",
+   "last": "0.34.0",
+   "count": 53
+  },
+  "TeleChat3ForCausalLM": {
+   "first": "0.20.0",
+   "last": "0.34.0",
+   "count": 19
+  },
+  "TeleChatForCausalLM": {
+   "first": "0.12.0",
+   "last": "0.25.1",
+   "count": 23
+  },
+  "TeleFLMForCausalLM": {
+   "first": "0.8.2",
+   "last": "0.34.0",
+   "count": 45
+  },
+  "Terratorch": {
+   "first": "0.10.2",
+   "last": "0.34.0",
+   "count": 36
+  },
+  "TransformersModel": {
+   "first": "0.7.2",
+   "last": "0.8.2",
+   "count": 5
+  },
+  "UltraVBertModel": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "UltravoxModel": {
+   "first": "0.6.3",
+   "last": "0.34.0",
+   "count": 55
+  },
+  "UnlimitedOCR2TextForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  },
+  "UnlimitedOCRForCausalLM": {
+   "first": "0.25.0",
+   "last": "0.34.0",
+   "count": 11
+  },
+  "VoxtralForConditionalGeneration": {
+   "first": "0.10.0",
+   "last": "0.34.0",
+   "count": 38
+  },
+  "VoxtralRealtimeGeneration": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "VoxtralStreamingGeneration": {
+   "first": "0.14.0",
+   "last": "0.15.1",
+   "count": 4
+  },
+  "VoyageQwen3BidirectionalEmbedModel": {
+   "first": "0.16.0",
+   "last": "0.34.0",
+   "count": 26
+  },
+  "WhisperForConditionalGeneration": {
+   "first": "0.7.0",
+   "last": "0.34.0",
+   "count": 51
+  },
+  "XLMRobertaForSequenceClassification": {
+   "first": "0.6.5",
+   "last": "0.34.0",
+   "count": 53
+  },
+  "XLMRobertaForTokenClassification": {
+   "first": "0.26.0",
+   "last": "0.34.0",
+   "count": 9
+  },
+  "XLMRobertaModel": {
+   "first": "0.6.4",
+   "last": "0.34.0",
+   "count": 54
+  },
+  "XverseForCausalLM": {
+   "first": "0.6.3",
+   "last": "0.23.0",
+   "count": 43
+  },
+  "Zamba2ForCausalLM": {
+   "first": "0.8.0",
+   "last": "0.34.0",
+   "count": 47
+  },
+  "ZayaForCausalLM": {
+   "first": "0.34.0",
+   "last": "0.34.0",
+   "count": 1
+  }
+ }
+}

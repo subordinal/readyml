@@ -20,7 +20,7 @@ It downloads no weights and needs no GPU. Exit code is 1 when the verdict is NOT
 
 | Check | Source |
 |---|---|
-| Architecture is supported in that vLLM release | the model registry in vLLM's source at the release tag |
+| Architecture is supported in that vLLM release, and which release added or dropped it | the model registry in vLLM's source, parsed for 55 releases (0.6.3 to 0.34.0) |
 | Quantization works on that GPU family | the quantization matrix in the vLLM v0.34.0 docs |
 | Weights fit in GPU memory | file sizes from the Hugging Face Hub |
 | Repo has config and tokenizer files, revision is pinned | the Hugging Face Hub |

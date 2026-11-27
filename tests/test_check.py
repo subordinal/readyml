@@ -71,6 +71,15 @@ class CheckTest(unittest.TestCase):
         m["config"]["architectures"] = ["NotARealModel"]
         self.assertEqual(levels(run(m), "architecture"), ["warn"])
 
+    def test_architecture_newer_than_release_fails(self):
+        old = dict(REGISTRY, native=REGISTRY["native"] - {"Qwen3ForCausalLM"})
+        m = copy.deepcopy(MODEL)
+        m["config"]["architectures"] = ["Qwen3ForCausalLM"]
+        result = check.run(m, old, METHODS, gpus.lookup("h100"), 1, "0.8.0", True)
+        arch = [f for f in result["findings"] if f["check"] == "architecture"][0]
+        self.assertEqual(arch["level"], "fail")
+        self.assertIn("starts in 0.8.4", arch["message"])
+
     def test_weights_larger_than_vram_fail(self):
         m = copy.deepcopy(MODEL)
         for s in m["siblings"]:

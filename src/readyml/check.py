@@ -54,8 +54,17 @@ def check_architecture(info, registry, version):
         elif arch in registry["plugin"]:
             out.append(finding(WARN, "architecture", f"{arch} needs an out-of-tree plugin: {registry['plugin'][arch]}", src))
         else:
-            out.append(finding(WARN, "architecture", f"{arch} is not in the vLLM {version} registry; it will only load if the Transformers fallback can resolve it", src))
+            out.append(_unlisted(arch, version, src))
     return out
+
+
+def _unlisted(arch, version, src):
+    seen = ((vllm.support_index() or {}).get("native") or {}).get(arch)
+    if seen and vllm.version_key(seen["first"]) > vllm.version_key(version):
+        return finding(FAIL, "architecture", f"{arch} is not in vLLM {version}; native support starts in {seen['first']}", src)
+    if seen and vllm.version_key(seen["last"]) < vllm.version_key(version):
+        return finding(FAIL, "architecture", f"{arch} is not in vLLM {version}; last release with native support is {seen['last']}", src)
+    return finding(WARN, "architecture", f"{arch} is not in the vLLM {version} registry; it will only load if the Transformers fallback can resolve it", src)
 
 
 def check_quantization(info, methods, gpu, version):
