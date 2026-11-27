@@ -76,15 +76,21 @@ def parse(lines):
             break
         phases.append({"phase": name, "seconds": (end - starts[name]).total_seconds(), "note": NOTES[name]})
     ready = "ready" in starts
-    total = (starts["ready"] - first).total_seconds() if ready else (last - first).total_seconds()
+    # A log from an offline or embedded engine has no API server lines; the engine is up once init finishes.
+    engine_ready = "server setup" in starts
+    end = starts["ready"] if ready else starts["server setup"] if engine_ready else last
+    total = (end - first).total_seconds()
+    if engine_ready and not ready:
+        phases = [p for p in phases if p["phase"] != "server setup"]
     return {
         "ready": ready,
+        "engine_ready": engine_ready,
         "total_seconds": total,
         "version": version,
         "model_memory_gib": float(memory) if memory else None,
         "phases": phases,
         "reported": reported,
-        "hints": hints(phases, reported, total, ready),
+        "hints": hints(phases, reported, total, ready or engine_ready),
     }
 
 
@@ -115,7 +121,7 @@ def render(result):
     if result is None:
         return "no timestamped vLLM log lines found"
     total = result["total_seconds"]
-    head = "READY" if result["ready"] else "NOT READY"
+    head = "READY" if result["ready"] else "ENGINE READY (no API server in this log)" if result["engine_ready"] else "NOT READY"
     lines = [f"{head} after {fmt(total)}" + (f"  (vLLM {result['version']})" if result["version"] else ""), ""]
     for p in result["phases"]:
         if p["seconds"] is None:

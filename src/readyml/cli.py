@@ -61,7 +61,7 @@ def cmd_trace(args):
     with (sys.stdin if args.log == "-" else open(args.log, errors="replace")) as f:
         result = trace.parse(f)
     print(json.dumps(result, indent=2) if args.json else trace.render(result))
-    return 0 if result and result["ready"] else 1
+    return 0 if result and (result["ready"] or result["engine_ready"]) else 1
 
 
 def main(argv=None):

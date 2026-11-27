@@ -51,6 +51,21 @@ class SyntheticTest(unittest.TestCase):
         self.assertEqual(r["total_seconds"], 72)
         self.assertTrue(any("VLLM_CACHE_ROOT" in h for h in r["hints"]))
 
+    def test_engine_only_log_is_engine_ready(self):
+        r = trace.parse(log(
+            ("10:00:00", "boot"),
+            ("10:00:01", "Initializing a V1 LLM engine (v0.10.1.1) with config"),
+            ("10:00:02", "Loading model from scratch..."),
+            ("10:00:12", "Model loading took 24.2841 GiB and 10.0 seconds"),
+            ("10:00:40", "init engine (profile, create kv cache, warmup model) took 28.00 seconds"),
+        ))
+        self.assertFalse(r["ready"])
+        self.assertTrue(r["engine_ready"])
+        self.assertEqual(r["total_seconds"], 40)
+        self.assertEqual([p["phase"] for p in r["phases"]], ["process start", "engine start", "model load", "engine init"])
+        self.assertEqual(r["hints"], [])
+        self.assertIn("ENGINE READY", trace.render(r))
+
     def test_no_timestamps(self):
         self.assertIsNone(trace.parse(["hello", "world"]))
         self.assertIn("no timestamped", trace.render(None))

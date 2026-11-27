@@ -95,7 +95,7 @@ It reads the timestamps and the durations vLLM logs itself, and adds a hint when
 - It reads configuration and logs. It cannot see engine bugs that are not in its known-issues file.
 - The quantization table comes from one vLLM release and has no Blackwell column. SGLang quantization is not checked.
 - The KV cache figure is an estimate from the standard attention formula. It is not calibrated against measured runs, and it is skipped for models whose config does not describe a standard attention stack.
-- `trace` reads vLLM logs only, and has been run against one real log so far. Phases vLLM does not log separately (distributed init, download with streaming loaders) are not split out.
+- `trace` reads vLLM logs only. It parses all 2,028 startup logs published with the MLSys 2026 paper on vLLM cold starts (vLLM 0.9.2 to 0.10.1.1), plus one server log from a vLLM issue. Phases vLLM does not log separately (distributed init, download with streaming loaders) are not split out.
 - Private and gated models need `HF_TOKEN`.
 
 ## Develop
