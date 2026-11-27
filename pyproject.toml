@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "readyml"
+version = "0.0.1"
+description = "Preflight check for self-hosted inference: will this model start on this runtime and GPU?"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+readyml = "readyml.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/readyml"]
