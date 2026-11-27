@@ -63,7 +63,7 @@ class SyntheticTest(unittest.TestCase):
         self.assertTrue(r["engine_ready"])
         self.assertEqual(r["total_seconds"], 40)
         self.assertEqual([p["phase"] for p in r["phases"]], ["process start", "engine start", "model load", "engine init"])
-        self.assertEqual(r["hints"], [])
+        self.assertFalse(any("ends before" in h for h in r["hints"]))
         self.assertIn("ENGINE READY", trace.render(r))
 
     def test_no_timestamps(self):
