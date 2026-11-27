@@ -2,7 +2,7 @@ import argparse
 import json
 import sys
 
-from . import check, gpus, hub, runtimes
+from . import check, gpus, hub, runtimes, trace
 
 MARK = {"pass": "ok  ", "warn": "WARN", "fail": "FAIL", "info": "info"}
 
@@ -49,6 +49,13 @@ def cmd_versions(args):
     return 0
 
 
+def cmd_trace(args):
+    with (sys.stdin if args.log == "-" else open(args.log, errors="replace")) as f:
+        result = trace.parse(f)
+    print(json.dumps(result, indent=2) if args.json else trace.render(result))
+    return 0 if result and result["ready"] else 1
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="readyml", description="Preflight check for self-hosted inference.")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -65,6 +72,10 @@ def main(argv=None):
     v.add_argument("--revision", help="commit SHA, branch or tag")
     v.add_argument("--json", action="store_true", help="print JSON")
     v.set_defaults(func=cmd_versions)
+    t = sub.add_parser("trace", help="explain where startup time went, from a vLLM server log")
+    t.add_argument("log", help="path to a vLLM log file, or - for stdin (kubectl logs <pod> | readyml trace -)")
+    t.add_argument("--json", action="store_true", help="print JSON")
+    t.set_defaults(func=cmd_trace)
     args = parser.parse_args(argv)
     sys.exit(args.func(args))
 
