@@ -1,0 +1,32 @@
+name: action
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  ready:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          model: Qwen/Qwen3-8B
+          revision: b968826d9c46dd6066d109eabc6255188de91218
+          runtime: vllm:0.34.0
+          gpu: l4
+  not-ready:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        continue-on-error: true
+        uses: ./
+        with:
+          model: Qwen/Qwen3-8B
+          runtime: vllm:0.8.0
+          gpu: l4
+      - name: The check must fail for a release that cannot load the model
+        if: steps.check.outcome != 'failure'
+        run: exit 1

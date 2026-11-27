@@ -1,0 +1,10 @@
+name: readyml got it wrong
+description: It said READY and the model failed, or it said NOT READY and the model started.
+labels: [accuracy]
+body:
+  - type: textarea
+    attributes: { label: Command and output, render: text }
+    validations: { required: true }
+  - type: textarea
+    attributes: { label: What actually happened }
+    validations: { required: true }

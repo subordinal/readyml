@@ -1,0 +1,22 @@
+name: Report a startup failure
+description: A model that would not start on a runtime release or GPU. We turn these into known-issue records.
+labels: [known-issue]
+body:
+  - type: input
+    attributes: { label: Model, description: Hugging Face model id, placeholder: Qwen/Qwen3-8B }
+    validations: { required: true }
+  - type: input
+    attributes: { label: Runtime and release, placeholder: "vllm 0.34.0" }
+    validations: { required: true }
+  - type: input
+    attributes: { label: GPU, placeholder: "4 x A100 80GB" }
+    validations: { required: true }
+  - type: input
+    attributes: { label: Launch flags, placeholder: "--tensor-parallel-size 4" }
+  - type: textarea
+    attributes: { label: Error, description: The key error line or the end of the log., render: text }
+    validations: { required: true }
+  - type: input
+    attributes: { label: Upstream issue, description: Link to the vLLM, SGLang or KServe issue, if there is one. }
+  - type: textarea
+    attributes: { label: Workaround, description: What made it start, if anything. }

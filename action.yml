@@ -1,0 +1,45 @@
+name: readyml check
+description: Check that a model will start on a runtime release and GPU before you deploy it.
+branding:
+  icon: check-circle
+  color: yellow
+inputs:
+  model:
+    description: Hugging Face model id
+    required: true
+  runtime:
+    description: Runtime and release, for example vllm:0.34.0 or sglang:0.5.23
+    required: true
+  gpu:
+    description: GPU type, for example h100, a100-80 or l4
+    required: true
+  gpus:
+    description: Number of GPUs
+    default: "1"
+  revision:
+    description: Commit SHA, branch or tag of the model
+    default: ""
+  max-model-len:
+    description: Context length you will serve
+    default: ""
+  hf-token:
+    description: Hugging Face token, for gated or private models
+    default: ""
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        HF_TOKEN: ${{ inputs.hf-token }}
+        PYTHONPATH: ${{ github.action_path }}/src
+        MODEL: ${{ inputs.model }}
+        RUNTIME: ${{ inputs.runtime }}
+        GPU: ${{ inputs.gpu }}
+        GPUS: ${{ inputs.gpus }}
+        REVISION: ${{ inputs.revision }}
+        MAX_MODEL_LEN: ${{ inputs.max-model-len }}
+      run: |
+        args=(--model "$MODEL" --runtime "$RUNTIME" --gpu "$GPU" --gpus "$GPUS")
+        [ -n "$REVISION" ] && args+=(--revision "$REVISION")
+        [ -n "$MAX_MODEL_LEN" ] && args+=(--max-model-len "$MAX_MODEL_LEN")
+        python3 -m readyml.cli check "${args[@]}"

@@ -50,6 +50,19 @@ $ readyml check --model Qwen/Qwen3.8-Flash-Next-FP8 --runtime vllm:0.34.0 --gpu 
 
 Each record names the issue it came from. A record matches only when it names your model or its architecture. Records were extracted from issue text and 16 of the 68 are marked medium confidence; only two have a confirmed fixed-in release. Corrections and new records are welcome as pull requests to the JSON file.
 
+### In CI
+
+```yaml
+- uses: subordinal/readyml@main
+  with:
+    model: Qwen/Qwen3-8B
+    revision: b968826d9c46dd6066d109eabc6255188de91218
+    runtime: vllm:0.34.0
+    gpu: l4
+```
+
+The step fails when the verdict is NOT READY.
+
 ## versions: which release do I need?
 
 ```
@@ -93,4 +106,6 @@ PYTHONPATH=src python -m unittest discover -s tests
 
 The release indexes are rebuilt with `tools/build_support.py` (vLLM) and `tools/build_sglang_support.py` (SGLang).
 
-Apache-2.0. Built by [Subordinal](https://github.com/subordinal). Early development.
+See [CONTRIBUTING.md](CONTRIBUTING.md). The quickest way to help is to report a startup failure.
+
+Apache-2.0. Built by [Subordinal](https://subordinal.github.io). Early development.

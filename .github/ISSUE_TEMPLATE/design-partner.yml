@@ -1,0 +1,13 @@
+name: Work with us
+description: You run your own inference and want readiness checks, startup history or policy for your fleet.
+labels: [design-partner]
+body:
+  - type: markdown
+    attributes:
+      value: This issue is public. Keep anything confidential out of it; say so and we will move to a private channel.
+  - type: textarea
+    attributes: { label: What you run, description: "Runtimes, rough GPU count, where it runs." }
+    validations: { required: true }
+  - type: textarea
+    attributes: { label: What hurts, description: "Slow starts, failed rollouts, version upgrades, something else." }
+    validations: { required: true }
